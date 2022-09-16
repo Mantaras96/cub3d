@@ -6,6 +6,8 @@ int print_error(int type)
         printf("No .cub file specified.\n");
     if (type == 2)
         printf("Too Many arguments.\n");
+    if (type == 3)
+        printf("Wrong .cub extension\n");
     return (0);
 }
 
