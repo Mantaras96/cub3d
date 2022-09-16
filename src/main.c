@@ -9,6 +9,29 @@ int print_error(int type)
     return (0);
 }
 
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+
+int read_file(int argc, char *file)
+{
+    char **split;
+
+    split = ft_split(file, '.');
+    if (!split[1] || (split[1] && ft_strcmp(split[1], "cub")))
+    {
+        print_error(3);
+        return (0);
+    }
+    return (1);
+}
 
 int check_args(int argc)
 {
@@ -28,7 +51,11 @@ int check_args(int argc)
 int main(int argc, char **argv)
 {
     //t_info *info;
-    (void)argv;
+    char *file;
+
+    file = argv[1];
     if (!check_args(argc))
         return (0);
+    if (!read_file(argc, file))
+        return(0);
 }
