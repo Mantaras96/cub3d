@@ -60,4 +60,6 @@ int main(int argc, char **argv)
         return (0);
     if (!read_file(argc, file))
         return(0);
+    //if (!check_map(file)) TODO: Albert implementar
+	//return (0)
 }
