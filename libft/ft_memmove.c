@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/22 19:27:00 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/28 21:07:15 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:11:53 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (dst > src)
+	size_t	i;
+	char	*dest;
+	char	*source;
+
+	i = 0;
+	dest = (char *)dst;
+	source = (char *)src;
+	if (dest > source)
 	{
-		while (len-- > 0)
-		{
-			((char *)dst)[len] = ((char *)src)[len];
-		}
+		while (len--)
+			dest[len] = source[len];
 	}
-	else
-	{
+	else if (dest < source)
 		ft_memcpy(dst, src, len);
-	}
 	return (dst);
 }

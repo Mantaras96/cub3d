@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 18:18:35 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/31 18:56:47 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:13:14 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,19 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
 	char	*str;
+	size_t	len2;
 
-	i = 0;
-	j = 0;
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	if (len > ft_strlen(s))
-		len = ft_strlen(s) + 1;
-	str = (char *) malloc(sizeof(*s) * (len + 1));
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup(""));
+	len2 = ft_strlen(start + s);
+	if (len2 < len)
+		len = len2;
+	str = (char *)malloc(sizeof(char) * len + 1);
 	if (!str)
 		return (NULL);
-	while (s[i] != 0)
-	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = 0;
+	ft_strlcpy(str, (s + start), len + 1);
 	return (str);
 }

@@ -3,31 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 18:25:19 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/02/01 20:52:34 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:12:53 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+Aplica la función ’f’ a cada caracter de la string
+’s’ para crear la nueva string, resultado de
+aplicar sucesivas veces ’f’ (utilizando malloc(3)).
+*/
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*str;
+	char	*str;
+	size_t	i;
+	size_t	size;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	str = (char *)malloc(sizeof(*s) * (ft_strlen(s) + 1));
+	if (!s || !f)
+	{
+		return (0);
+	}
+	size = ft_strlen(s);
+	str = malloc(sizeof(char) * size + 1);
 	if (!str)
-		return (NULL);
-	while (s[i] != 0)
+		return (0);
+	i = 0;
+	while (s[i])
 	{
 		str[i] = f(i, s[i]);
 		i++;
 	}
-	str[i] = 0;
+	str[i] = '\0';
 	return (str);
 }

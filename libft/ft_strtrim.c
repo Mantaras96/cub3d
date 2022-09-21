@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/02 20:33:33 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/02/04 21:33:43 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:13:10 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_principio(char const *s1, char const *set)
+int	getstart(char const *s1, char const *set)
 {
-	size_t	len;
-	size_t	i;
+	int	len;
+	int	i;
 
-	i = 0;
 	len = ft_strlen(s1);
+	i = 0;
 	while (i < len)
 	{
-		if (!(ft_strchr(set, s1[i])))
+		if (ft_strchr(set, s1[i]) == 0)
 			return (i);
 		i++;
 	}
 	return (i);
 }
 
-int	ft_final(char const *s1, char const *set)
+int	getend(char const *s1, char const *set)
 {
-	size_t	len;
-	size_t	i;
+	int	len;
+	int	i;
 
-	i = 0;
 	len = ft_strlen(s1);
+	i = 0;
 	while (i < len)
 	{
-		if (!(ft_strchr(set, s1[len - 1 - i])))
+		if (ft_strchr(set, s1[len - 1 - i]) == 0)
 			return (len - i);
 		i++;
 	}
@@ -46,21 +46,21 @@ int	ft_final(char const *s1, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		principio;
-	int		final;
+	int		start;
+	int		end;
 	char	*str;
 
-	if (!s1)
+	if (s1 == NULL)
 		return (NULL);
-	if (!set)
+	if (set == NULL)
 		return (ft_strdup(s1));
-	principio = ft_principio(s1, set);
-	final = ft_final(s1, set);
-	if (principio > final)
+	start = getstart(s1, set);
+	end = getend(s1, set);
+	if (start >= end)
 		return (ft_strdup(""));
-	str = malloc(sizeof(char) * (final - principio + 1));
+	str = malloc(sizeof(char) * (end - start + 1));
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s1 + principio, final - principio + 1);
+	ft_strlcpy (str, s1 + start, end - start + 1);
 	return (str);
 }

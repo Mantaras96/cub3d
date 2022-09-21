@@ -3,25 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 20:01:37 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/28 20:55:50 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:11:40 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	*ft_memchr(const void *str, int c, size_t n)
 {
-	unsigned char	*s2;
+	size_t			i;
+	unsigned char	*str_copy;
+	unsigned char	character;
 
-	s2 = (unsigned char *)s;
-	while (n-- > 0)
+	str_copy = (unsigned char *)str;
+	character = (unsigned char)c;
+	i = 0;
+	while (i < n)
 	{
-		if (*s2 == (unsigned char) c)
-			return (s2);
-		s2++;
+		if (*str_copy == character)
+		{
+			return (str_copy);
+		}
+		i++;
+		str_copy++;
 	}
-	return (NULL);
+	return (0);
 }

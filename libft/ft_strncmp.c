@@ -3,27 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 19:21:59 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/31 18:53:41 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:12:57 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*str1_copy;
+	unsigned char	*str2_copy;
 
 	if (n == 0)
-	{
 		return (0);
-	}
+	str1_copy = (unsigned char *)str1;
+	str2_copy = (unsigned char *)str2;
 	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+	while (i <= n - 1 && str1_copy[i] && str2_copy[i])
 	{
+		if (str1_copy[i] != str2_copy[i])
+		{
+			return (str1_copy[i] - str2_copy[i]);
+		}
 		i++;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (i != n)
+		return (str1_copy[i] - str2_copy[i]);
+	return (0);
 }

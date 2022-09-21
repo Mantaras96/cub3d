@@ -3,53 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 17:02:23 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/22 18:54:21 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/02/04 16:10:13 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:10:16 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <limits.h>
 
-static int	ft_isspace(int c)
+int	validate_char(char c)
 {
-	if (c == '\v' || c == '\n' || c == '\r' || c == '\f'
-		|| c == '\t' || c == ' ')
+	if (c == ' ' || c == '\t'
+		|| c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r')
 	{
 		return (1);
 	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }
 
-int	ft_atoi(const char *str)
+int	max_long(long int sum, int signo)
 {
-	long long int	num;
-	int				sign;
+	if (sum * signo > 2147483647)
+		return (-1);
+	else if (sum * signo < -2147483648)
+		return (0);
+	return (1);
+}
 
-	num = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		str++;
-	if (*str == '+' || *str == '-')
+int	ft_atoi(const char *str1)
+{
+	int			i;
+	int			signo;
+	long int	sum;
+	char		*str;
+
+	str = (char *) str1;
+	sum = 0;
+	i = 0;
+	signo = 1;
+	while (validate_char(str[i]) == 1)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*str == '-')
-		{
-			sign *= -1;
-		}
-		str++;
+		if (str[i] == '-')
+			signo = -1;
+		i++;
 	}
-	while (ft_isdigit(*str))
+	while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
 	{
-		num = num * 10 + (*str++ - '0');
-		if (num < INT_MIN && sign == -1)
-			return (0);
-		if (num > INT_MAX && sign == 1)
-			return (-1);
+		if (max_long(sum, signo) == -1 || max_long(sum, signo) == 0)
+			return (max_long(sum, signo));
+		sum = sum * 10 + str[i] - '0';
+		i++;
 	}
-	return (sign * num);
+	return (sum * signo);
 }

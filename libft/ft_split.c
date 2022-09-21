@@ -3,94 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 17:21:37 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/02/04 21:44:43 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:12:18 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	contador(char const *s, char c)
+static int	count_words(const char *str, char c)
 {
 	int	i;
-	int	init;
-	int	numword;
-
-	numword = 0;
-	i = -1;
-	init = -1;
-	while (s[++i])
-	{
-		if (init == -1 && s[i] != c)
-			init = 1;
-		if (init != -1 && s[i] == c)
-		{	
-			numword += 1;
-			init = -1;
-		}
-	}
-	if (init == 1)
-		++numword;
-	return (numword);
-}
-
-char	*ft_printword(char const *str, int inicio, int fin)
-{
-	size_t	i;
-	char	*palabra;
+	int	trigger;
 
 	i = 0;
-	palabra = malloc(sizeof(char ) * (fin - inicio + 1));
-	if (!palabra)
-		return (NULL);
-	while (inicio < fin)
+	trigger = 0;
+	while (*str)
 	{
-		palabra[i] = str[inicio];
-		i++;
-		inicio++;
+		if (*str != c && trigger == 0)
+		{
+			trigger = 1;
+			i++;
+		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
 	}
-	palabra[i] = '\0';
-	return (palabra);
+	return (i);
 }
 
-void	split_string(char **str, char const *s, char c)
+char	*word_splited(const char *str, int start, int end)
+{
+	size_t	i;
+	char	*word;
+
+	i = 0;
+	word = malloc(sizeof(char) * (end - start + 1));
+	if (!word)
+		return (NULL);
+	while (start < end)
+	{
+		word[i] = str[start];
+		i++;
+		start++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+void	write_word(char **split, char c, char const *s)
 {
 	size_t	i;
 	size_t	j;
-	int		activado;
+	int		i_copy;
 
 	i = 0;
 	j = 0;
-	activado = -1;
+	i_copy = -1;
 	while (i <= ft_strlen(s))
 	{
-		if (s[i] != c && activado < 0)
+		if (s[i] != c && i_copy < 0)
+			i_copy = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && i_copy >= 0)
 		{
-			activado = i;
+			split[j++] = word_splited(s, i_copy, i);
+			i_copy = -1;
 		}
-		else if ((s[i] == c || i == ft_strlen(s)) && activado >= 0)
-		{
-			str[j++] = ft_printword(s, activado, i);
-			activado = -1;
-		}
-		i++;
+	i++;
 	}
-	str[j] = 0;
+	split[j] = 0;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		palabr;
-	char	**str;
+	char	**split;
 
 	if (!s)
-		return (NULL);
-	palabr = contador(s, c);
-	str = malloc(sizeof(char *) * (palabr + 1));
-	if (!str)
-		return (NULL);
-	split_string(str, s, c);
-	return (str);
+		return (0);
+	split = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!split)
+		return (0);
+	write_word(split, c, s);
+	return (split);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 19:09:17 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/27 20:58:40 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:13:19 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	ft_tolower(int c)
 {
-	if (c >= 'A' && c <= 'Z')
+	int	diferencia;
+
+	diferencia = 32;
+	if (c >= 65 && c <= 90)
 	{
-		return (c - ('A' - 'a'));
+		c = c + diferencia;
 	}
 	return (c);
 }

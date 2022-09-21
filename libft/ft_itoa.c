@@ -3,63 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 19:35:01 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/02/04 18:57:52 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:10:58 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_contador(long int num)
+size_t	count_char(long int number)
 {
-	size_t	i;
+	size_t	size;
 
-	i = 0;
-	if (num == 0)
-	{
+	size = 0;
+	if (number == 0)
 		return (1);
-	}
-	if (num < 0)
+	if (number < 0)
 	{
-		num *= -1;
-		i++;
+		number = number * -1;
+		size++;
 	}
-	while (num > 0)
+	while (number > 0)
 	{
-		num /= 10;
-		i++;
+		number = number / 10;
+		size++;
 	}
-	return (i);
+	return (size);
 }
 
-void	ft_conversion(long int n, char *s1, long int i)
+void	ft_convbase(long int n, char *number, long int i)
 {
 	if (n < 0)
 	{
-		s1[0] = '-';
+		number[0] = '-';
 		n *= -1;
 	}	
 	if (n >= 10)
-	{
-		ft_conversion((n / 10), s1, (i - 1));
-	}
-	s1[i] = (n % 10) + '0';
+		ft_convbase((n / 10), number, (i - 1));
+	number[i] = (n % 10) + '0';
 }
 
 char	*ft_itoa(int n)
 {
-	size_t	i;
+	size_t	size;
 	char	*str;
 
-	i = ft_contador(n);
-	str = (char *)malloc(sizeof(char) * (i + 1));
+	size = count_char(n);
+	str = malloc(sizeof(char) * (size + 1));
 	if (!str)
-	{
 		return (0);
-	}
-	str[i--] = '\0';
-	ft_conversion(n, str, i);
+	str[size--] = '\0';
+	ft_convbase(n, str, size);
 	return (str);
 }

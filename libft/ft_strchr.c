@@ -3,29 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 19:00:42 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/01/28 21:20:31 by tmerida-         ###   ########.fr       */
+/*   Created: 2022/01/10 18:49:59 by amantara          #+#    #+#             */
+/*   Updated: 2022/02/04 16:12:23 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*  
+	The C library function char *strchr(const char *str, int c) 
+	searches for the first occurrence of the character c (an unsigned char) 
+	in the string pointed to by the argument str.
+*/
 char	*ft_strchr(const char *s, int c)
 {
-	char	*s1;
-	char	c1;
+	char			*str;
+	unsigned char	ch;
 
-	s1 = (char *)s;
-	c1 = (char)c;
-	while (*s1)
+	ch = (unsigned char) c;
+	str = (char *)s;
+	while (*str != ch)
 	{
-		if (*s1 == c1)
-			return (s1);
-		s1++;
+		if (*str == '\0')
+		{
+			return (NULL);
+		}
+		str++;
 	}
-	if (*s1 == c1)
-		return (s1);
-	return (NULL);
+	return (str);
 }
