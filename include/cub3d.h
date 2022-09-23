@@ -38,6 +38,7 @@ typedef struct s_global
 	int			count_exit;
 	int			count_player;
 	int			count_jumpline;
+	int			lines_textures;
 }	t_global;
 
 void	show_error_msg( char *str);
@@ -62,5 +63,6 @@ void	clean_img(t_global *global);
 int		close_event(void);
 void	*transform_img(void *mlx, char *image);
 void split_map(t_global *global);
+int	ft_matrix_len(char **matrix);
 
 #endif

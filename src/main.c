@@ -28,6 +28,67 @@ void	*select_img(t_global *vars, char *image)
 	return (img);
 }
 
+void count_lines(t_global *global)
+{
+	int i;
+	int j; 
+	i = 0;
+	j= 0;
+	int count;
+	count = 0;
+	while(global->map[i])
+	{
+		if(global->map[i][0] == '\n')
+		{
+			break ;
+		}
+		i++;
+	}
+	global->lines_textures = i;
+	j = i;
+	if (global->map[j][0] == '\n'){
+		while(global->map[j])
+		{
+			if(global->map[i][0] == '\n')
+			{
+				i++;
+				count++;
+			}
+				
+			else 
+				break ;
+		}
+	}
+	
+	printf("%d\n", count);
+	printf("%d\n", global->lines_textures);
+}
+
+void valid_textures(t_global *global)
+{
+	int i;
+	i = 0;
+	global->textures = malloc(sizeof(char *) * (5));
+	global->textures[4] = NULL;
+	while (global->map[i])
+	{
+		
+		if(global->map[i][0] == '\n')
+			break ;
+
+		global->textures[i] = ft_strdup(global->map[i]);
+		i++;
+	}
+
+	i = 0;
+	while(global->textures[i])
+	{
+		printf("%s", global->textures[i]);
+		i++;
+	}
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_global	global;
@@ -35,7 +96,9 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		global.map = validate_and_read_map(argv[1]);
-		split_map(&global);
+		count_lines(&global);
+		//split_map(&global);
+		valid_textures(&global);
 		// validate_letters_map(&global);
 		// // global.img = ft_calloc(sizeof(void *),
 		// // 		((global.width - 1) * (global.height)) + 1);
