@@ -3,43 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   validate_and_read_map.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertmantaras <albertmantaras@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:22:17 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/21 19:36:04 by amantara         ###   ########.fr       */
+/*   Updated: 2022/09/23 20:36:21 by albertmanta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-char	**validate_and_read_map(char *filename)
+char	**validate_and_read_map(char *filename, t_global *global)
 {
+
 	ft_validate_name(filename);
-	return (read_map(filename));
+	read_map(filename, global);
+	return (0);
 }
 
-char	**read_map(char *filename)
+char	**read_map(char *filename, t_global *global)
 {
-	char	**map;
 	char	*line;
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		show_error_msg("Error\n La ruta del mapa no es correcta");
-	map = ft_calloc(sizeof(char *), 1);
-	if (map == NULL)
+	global->map = ft_calloc(sizeof(char *), 1);
+	if (global->map == NULL)
 		show_error_msg("Error\n de memoria.\n");
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line != NULL)
-			map = arr_push(map, line);
+			global->map = arr_push(global->map, line);
 		else
 			break ;
 	}
 	close(fd);
-	return (map);
+	return (global->map);
 }
 
 int	ft_validate_name(char *filename)

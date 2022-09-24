@@ -42,8 +42,8 @@ typedef struct s_global
 }	t_global;
 
 void	show_error_msg( char *str);
-char	**validate_and_read_map(char *filename);
-char	**read_map(char *filename);
+char	**validate_and_read_map(char *filename, t_global *global);
+char	**read_map(char *filename, t_global *global);
 int		array_str_count(char **arr);
 int		ft_validate_name(char *filename);
 char	**arr_push(char **arr, char *str);
@@ -64,5 +64,6 @@ int		close_event(void);
 void	*transform_img(void *mlx, char *image);
 void split_map(t_global *global);
 int	ft_matrix_len(char **matrix);
+void validate_map(t_global *global);
 
 #endif
