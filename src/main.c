@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertmantaras <albertmantaras@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:22:17 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/21 19:43:29 by amantara         ###   ########.fr       */
+/*   Updated: 2022/09/23 20:35:52 by albertmanta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,20 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
+<<<<<<< HEAD
 		//Teo: printar error y salir cuando hayan mas de las lineas que toca. :)
 		global.map = validate_and_read_map(argv[1]);
 		count_lines(&global);
 		split_map(&global);
 		validate_textures(&global);
+=======
+		validate_and_read_map(argv[1], &global);
+		// count_lines(&global);
+		// // Read map mock 
+		validate_map(&global);
+		// //split_map(&global);
+		// valid_textures(&global);
+>>>>>>> 740a64bdda67c7788998955fd2b8c5e8d6a99bb5
 		// validate_letters_map(&global);
 		// // global.img = ft_calloc(sizeof(void *),
 		// // 		((global.width - 1) * (global.height)) + 1);

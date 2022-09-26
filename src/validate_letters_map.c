@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_letters_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: albertmantaras <albertmantaras@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:05:15 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/21 20:11:30 by amantara         ###   ########.fr       */
+/*   Updated: 2022/09/23 20:09:07 by albertmanta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,6 @@ void	read_line(char *map, t_global *global)
 
 void	validate_all_leters(t_global *global)
 {
-	if (global->count_coll < 1)
-		show_error_msg("Error\n de coleccionables.");
-	if (global->count_exit > 1 || global->count_exit == 0)
-		show_error_msg("Error\n de salidas disponibles.");
 	if (global->count_player > 1 || global->count_player == 0)
 		show_error_msg("Error\n de jugadores.");
 }
