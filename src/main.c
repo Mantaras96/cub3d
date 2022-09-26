@@ -27,15 +27,8 @@ void	*select_img(t_global *vars, char *image)
 			&img_size, &img_size);
 	return (img);
 }
-
-void count_lines(t_global *global)
+int count_file_lines(t_global *global, int i)
 {
-	int i;
-	int j; 
-	i = 0;
-	j= 0;
-	int count;
-	count = 0;
 	while(global->map[i])
 	{
 		if(global->map[i][0] == '\n')
@@ -44,50 +37,38 @@ void count_lines(t_global *global)
 		}
 		i++;
 	}
-	global->lines_textures = i;
-	j = i;
-	if (global->map[j][0] == '\n'){
-		while(global->map[j])
+	return(i);
+}
+
+int count_empty_lines(t_global *global, int i, int count)
+{
+	if (global->map[i][0] == '\n'){
+		while(global->map[i])
 		{
 			if(global->map[i][0] == '\n')
 			{
 				i++;
 				count++;
 			}
-				
 			else 
 				break ;
 		}
 	}
-	
-	printf("%d\n", count);
-	printf("%d\n", global->lines_textures);
+	return (count);
 }
 
-void valid_textures(t_global *global)
+void count_lines(t_global *global)
 {
 	int i;
 	i = 0;
-	global->textures = malloc(sizeof(char *) * (5));
-	global->textures[4] = NULL;
-	while (global->map[i])
-	{
-		
-		if(global->map[i][0] == '\n')
-			break ;
-
-		global->textures[i] = ft_strdup(global->map[i]);
-		i++;
-	}
-
-	i = 0;
-	while(global->textures[i])
-	{
-		printf("%s", global->textures[i]);
-		i++;
-	}
+	global->lines_textures = count_file_lines(global, i);
+	global->empty_line = count_empty_lines(global, global->lines_textures, 0);
+	i = count_file_lines(global, global->empty_line + global->lines_textures);
+	global->lines_colors = i - global->empty_line - global->lines_textures;
+	global->empty_line_2 = count_empty_lines(global, i, 0);
+	i = count_file_lines(global, global->empty_line_2 + i);
+	global->lines_maps = i - (global->lines_textures + global->lines_colors + global->empty_line + global->empty_line_2);
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -95,10 +76,11 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
+		//Teo: printar error y salir cuando hayan mas de las lineas que toca. :)
 		global.map = validate_and_read_map(argv[1]);
 		count_lines(&global);
-		//split_map(&global);
-		valid_textures(&global);
+		split_map(&global);
+		validate_textures(&global);
 		// validate_letters_map(&global);
 		// // global.img = ft_calloc(sizeof(void *),
 		// // 		((global.width - 1) * (global.height)) + 1);

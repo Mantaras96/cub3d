@@ -31,6 +31,9 @@ typedef struct s_global
 	char		**map;
     char        **textures;
     char        **colors;
+	char		**nums;
+	int			empty_line;
+	int			empty_line_2;
 	int			width;
 	int			height;
 	t_corde		character;
@@ -39,6 +42,8 @@ typedef struct s_global
 	int			count_player;
 	int			count_jumpline;
 	int			lines_textures;
+	int			lines_colors;
+	int			lines_maps;
 }	t_global;
 
 void	show_error_msg( char *str);
@@ -64,5 +69,5 @@ int		close_event(void);
 void	*transform_img(void *mlx, char *image);
 void split_map(t_global *global);
 int	ft_matrix_len(char **matrix);
-
+void malloc_maps(t_global *global);
 #endif
