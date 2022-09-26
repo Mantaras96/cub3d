@@ -6,6 +6,7 @@ void validate_one_player(t_global *global){
     int j;
 
     i = 0;
+    j = 0;
     while (global->map[i]){
         while(global->map[i][j]){
             if (global->map[i][j] == 'N' || global->map[i][j] == 'S'  || global->map[i][j] == 'E'  || global->map[i][j] == 'W'){
@@ -33,6 +34,6 @@ void validate_map(t_global *global){
 
     //4
     global->count_player = 0;
-    validate_one_player(global)
+    validate_one_player(global);
 
 }

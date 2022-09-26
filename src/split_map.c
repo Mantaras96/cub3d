@@ -10,7 +10,7 @@ int	ft_matrix_len(char **matrix)
 	return (i);
 }
 
-void malloc_maps(t_global *global)
+int malloc_maps(t_global *global)
 {
     global->textures = malloc(sizeof(char *) * (global->lines_textures + 1));
     global->textures[global->lines_textures] = NULL;
@@ -18,16 +18,23 @@ void malloc_maps(t_global *global)
     global->colors[global->lines_colors] = NULL;
     global->nums = malloc(sizeof(char *) * (global->lines_maps + 1));
     global->nums[global->lines_maps] = NULL;
+    if(!global->textures || !global->colors || !global->nums)
+    {
+        show_error_msg("Malloc error");
+        return (0);
+    }
+    return (1);
 }
 
-void split_map(t_global *global)
+int split_map(t_global *global)
 {
     int i;
     int j;
 
     i = 0;
     j = 0;
-    malloc_maps(global);
+    if(!malloc_maps(global))
+        return (0);
     while(i < global->lines_textures)
     {
  		global->textures[i] = ft_strdup(global->map[i]);
@@ -48,6 +55,7 @@ void split_map(t_global *global)
 		i++;
         j++;
     }
+    return (1);
 // //     printf("TEXT%d\n", global->lines_textures );
 // //     printf("colors%d\n", global->lines_colors );
 // //     printf("maps%d\n", global->lines_maps );

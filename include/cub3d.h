@@ -64,12 +64,14 @@ int		mover(int keycode, t_global *global);
 void	move_main_char(t_global *global);
 int		can_move(t_global *global);
 char	get_direction(int keycode);
+int	ft_strcmp(const char *str1, const char *str2);
 void	clean_img(t_global *global);
 int		close_event(void);
 void	*transform_img(void *mlx, char *image);
-void split_map(t_global *global);
+int split_map(t_global *global);
 int	ft_matrix_len(char **matrix);
-void malloc_maps(t_global *global);
+int malloc_maps(t_global *global);
 void validate_map(t_global *global);
+int validate_textures(t_global *global);
 
 #endif

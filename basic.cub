@@ -1,18 +1,11 @@
-NO ./ruta_a_la_textura_norte
+NO assets/sprites/char_d.xpm
 SO ./ruta_a_la_textura_sur
 WE ./ruta_a_la_textura_oeste
-EA ./ruta_a_la_textura_este
+SA ./ruta_a_la_textura_este
 
 F 220,100,0
 C 225,30,0
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 740a64bdda67c7788998955fd2b8c5e8d6a99bb5
    1111111111111111111111111
    1000000000110000000000001
    1011000001110000000000001
@@ -29,3 +22,5 @@ C 225,30,0
 11111111 1111111 111111111111
 121121111
 11111111
+
+assets/sprites/char_d.xpm

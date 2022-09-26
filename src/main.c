@@ -57,7 +57,7 @@ int count_empty_lines(t_global *global, int i, int count)
 	return (count);
 }
 
-void count_lines(t_global *global)
+int count_lines(t_global *global)
 {
 	int i;
 	i = 0;
@@ -68,6 +68,11 @@ void count_lines(t_global *global)
 	global->empty_line_2 = count_empty_lines(global, i, 0);
 	i = count_file_lines(global, global->empty_line_2 + i);
 	global->lines_maps = i - (global->lines_textures + global->lines_colors + global->empty_line + global->empty_line_2);
+	if (global->lines_textures < 4 || global->lines_textures > 4)
+		return (0);
+	if (global->lines_colors < 2 || global->lines_colors > 2)
+		return (0);
+	 return(1);
 }
 
 int	main(int argc, char **argv)
@@ -76,15 +81,19 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		//Teo: printar error y salir cuando hayan mas de las lineas que toca. :)
-		global.map = validate_and_read_map(argv[1]);
-		count_lines(&global);
-		split_map(&global);
-		validate_textures(&global);
 		validate_and_read_map(argv[1], &global);
+		if(!count_lines(&global))
+		{
+			show_error_msg("Error numero de texturas\n");
+			return(0);
+		}
+			if(!split_map(&global))
+				return (0);
+		validate_textures(&global);
+		//validate_and_read_map(argv[1], &global);
 		// count_lines(&global);
 		// // Read map mock 
-		validate_map(&global);
+		//validate_map(&global);
 		// //split_map(&global);
 		// valid_textures(&global);
 		// validate_letters_map(&global);

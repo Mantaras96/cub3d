@@ -14,7 +14,6 @@
 
 char	**validate_and_read_map(char *filename, t_global *global)
 {
-
 	ft_validate_name(filename);
 	read_map(filename, global);
 	return (0);
