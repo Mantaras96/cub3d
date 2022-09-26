@@ -69,10 +69,7 @@ int		close_event(void);
 void	*transform_img(void *mlx, char *image);
 void split_map(t_global *global);
 int	ft_matrix_len(char **matrix);
-<<<<<<< HEAD
 void malloc_maps(t_global *global);
-=======
 void validate_map(t_global *global);
 
->>>>>>> 740a64bdda67c7788998955fd2b8c5e8d6a99bb5
 #endif
