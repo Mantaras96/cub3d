@@ -22,16 +22,6 @@ void	*transform_img(void *mlx, char *image)
 	return (img);
 }
 
-void	set_mlx_and_window(t_global *global)
-{
-	global->mlx = mlx_init();
-	global->win = mlx_new_window(global->mlx,
-			((global->width - 1) * SIZE_TEXTURE),
-			(global->height * SIZE_TEXTURE), "so_long");
-	global->character.direction = 'W';
-	show_map(global);
-}
-
 void	*get_sprite_char(t_global *global)
 {
 	if (global->character.direction == 'W')

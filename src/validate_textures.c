@@ -24,10 +24,10 @@ int access_textures(const char *filename)
     {
         return (1);
         close(fd);
-        free(arr);
+        free_matrix(&arr);
     }
     close(fd);
-    free(arr);
+    free_matrix(&arr);
     return (0);
 }
 
@@ -45,16 +45,16 @@ int validate_textures(t_global *global)
             if (access_textures(arr[1]))
             {
                 show_error_msg("Error en las rutas de las texturas\n");
-                free(arr);
+                free_matrix(&arr);
                 break ;
             }
         }
         else {
             show_error_msg("Identificador de las texturas erroneo.\n");
-            free(arr);
+            free_matrix(&arr);
             break ;
         }
-        free(arr);
+            free_matrix(&arr);
         i++;
     }
     return (0);

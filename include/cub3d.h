@@ -75,5 +75,6 @@ void validate_map(t_global *global);
 int validate_textures(t_global *global);
 int access_textures(const char *filename);
 int validate_colors(t_global *global);
+void	free_matrix(char ***matrix);
 
 #endif
