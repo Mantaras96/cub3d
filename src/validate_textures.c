@@ -14,20 +14,48 @@ int	ft_strcmp(const char *str1, const char *str2)
 	return (*(const unsigned char *) str1 - *(const unsigned char *) str2);
 }
 
+int access_textures(const char *filename)
+{
+    int fd;
+    char **arr;
+    arr = ft_split(filename, '\n');
+    fd = open(arr[0], R_OK);
+    if (fd == -1)
+    {
+        return (1);
+        close(fd);
+        free(arr);
+    }
+    close(fd);
+    free(arr);
+    return (0);
+}
+
 int validate_textures(t_global *global)
 {
     int i;
     char **arr;
     i = 0;
-    //int fd;
-    //MIRAR CON EL GNL Y SPLIT 
-    // if (global->textures[0][0] != 'N' && global->textures[0][1] != 'O')
-    //     printf("to1");
-    // if (global->textures[1][0] != 'S' && global->textures[1][1] != 'O')
-    //     printf("to2");
-    // if (global->textures[2][0] != 'W' && global->textures[2][1] != 'E')
-    //     printf("to3");
-    // if (global->textures[3][0] != 'E' && global->textures[3][1] != 'A')
-    //     printf("to4");
+
+    while (global->textures[i])
+    {
+        arr = ft_split(global->textures[i], ' ');
+        if (!ft_strcmp(arr[0], "NO") || !ft_strcmp(arr[0], "SO") || !ft_strcmp(arr[0], "WE") || !ft_strcmp(arr[0], "EA"))
+        {
+            if (access_textures(arr[1]))
+            {
+                show_error_msg("Error en las rutas de las texturas\n");
+                free(arr);
+                break ;
+            }
+        }
+        else {
+            show_error_msg("Identificador de las texturas erroneo.\n");
+            free(arr);
+            break ;
+        }
+        free(arr);
+        i++;
+    }
     return (0);
 }

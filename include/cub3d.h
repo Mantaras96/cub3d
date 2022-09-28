@@ -73,5 +73,7 @@ int	ft_matrix_len(char **matrix);
 int malloc_maps(t_global *global);
 void validate_map(t_global *global);
 int validate_textures(t_global *global);
+int access_textures(const char *filename);
+int validate_colors(t_global *global);
 
 #endif

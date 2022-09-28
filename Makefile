@@ -8,7 +8,8 @@ SRC	=	src/main.c \
 		gnl/get_next_line.c \
 		src/split_map.c \
 		src/validateMap.c \
-		src/validate_textures.c
+		src/validate_textures.c \
+		src/validate_colors.c 
 
 NAME 	= 	cub3d
 

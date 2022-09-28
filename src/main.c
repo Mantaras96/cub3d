@@ -83,13 +83,11 @@ int	main(int argc, char **argv)
 	{
 		validate_and_read_map(argv[1], &global);
 		if(!count_lines(&global))
-		{
 			show_error_msg("Error numero de texturas\n");
-			return(0);
-		}
-			if(!split_map(&global))
-				return (0);
+		if(!split_map(&global))
+			return (0);
 		validate_textures(&global);
+		validate_colors(&global);
 		//validate_and_read_map(argv[1], &global);
 		// count_lines(&global);
 		// // Read map mock 
