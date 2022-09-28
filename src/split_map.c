@@ -26,7 +26,7 @@ int malloc_maps(t_global *global)
     return (1);
 }
 
-int split_map(t_global *global)
+int     split_map(t_global *global)
 {
     int i;
     int j;
