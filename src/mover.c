@@ -62,30 +62,40 @@ void	move_main_char(t_global *global)
 	global->map[global->character.y][global->character.x] = 'P';
 }
 
+void	free_matrix(char ***matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix && matrix[0] && matrix[0][i])
+	{
+		free (matrix[0][i]);
+		i++;
+	}
+	if (matrix)
+	{
+		free (matrix[0]);
+		*matrix = NULL;
+	}
+}
+
+void free_all(t_global *global)
+{
+	free_matrix(&global->textures);
+	free_matrix(&global->colors);
+	free_matrix(&global->nums);
+	free_matrix(&global->map);
+	free(global);
+}
+
 int	mover(int keycode, t_global *global)
 {	
-	char	dir;
-
-	clean_img(global);
-	mlx_clear_window(global->mlx, global->win);
-	dir = get_direction(keycode);
-	if (dir != '0')
-	{
-		global->character.direction = dir;
-		if (can_move(global) == 1)
-			move_main_char(global);
-		// else if (can_move(global) == 2 && global->collect == 0)
-		// {
-		// 	mlx_destroy_window(global->mlx, global->win);
-		// 	exit(0);
-		// }
-	}
 	if (keycode == 53)
 	{
 		mlx_destroy_window(global->mlx, global->win);
+		free_all(global);
 		exit(0);
 	}
-	show_map(global);
 	return (0);
 }
 

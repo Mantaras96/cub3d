@@ -18,14 +18,11 @@ int	close_event(void)
 	return (0);
 }
 
-void	*select_img(t_global *vars, char *image)
+void	set_mlx_and_window(t_global *global)
 {
-	void	*img;
-	int		img_size;
-
-	img = mlx_xpm_file_to_image(vars->mlx, image,
-			&img_size, &img_size);
-	return (img);
+	global->mlx = mlx_init();
+	global->win = mlx_new_window(global->mlx,
+			1920, 1080, "cub3d");
 }
 int count_file_lines(t_global *global, int i)
 {
@@ -88,21 +85,10 @@ int	main(int argc, char **argv)
 			return (0);
 		validate_textures(&global);
 		validate_colors(&global);
-		//validate_and_read_map(argv[1], &global);
-		// count_lines(&global);
-		// // Read map mock 
-		//validate_map(&global);
-		// //split_map(&global);
-		// valid_textures(&global);
-		// validate_letters_map(&global);
-		// // global.img = ft_calloc(sizeof(void *),
-		// // 		((global.width - 1) * (global.height)) + 1);
-		// if (global.img == NULL)
-		// 	return (0);
-		// set_mlx_and_window(&global);
-		// mlx_hook(global.win, 2, 0, mover, &global);
-		// mlx_hook(global.win, 17, 0, close_event, &global);
-		// mlx_loop(global.mlx);
+		set_mlx_and_window(&global);
+		mlx_hook(global.win, 2, 0, mover, &global);
+		mlx_hook(global.win, 17, 0, close_event, &global);
+		mlx_loop(global.mlx);
 	}
 	else
 	{

@@ -13,17 +13,18 @@ int check_nums(char *line_nums)
         {
             if (ft_atoi(arr[i]) > 255 || ft_atoi(arr[i]) < 0)
             {
-                free(arr);
+                free_matrix(&arr);
                 return (1);
             }
         }
         else
         {
-            free(arr);
+            free_matrix(&arr);
             return (1);
         }
         i++;
     }
+    free_matrix(&arr);
     return (0);
 }
 
@@ -42,16 +43,16 @@ int validate_colors(t_global *global)
             if (check_nums(arr[1]))
             {
                 show_error_msg("Colores erroneos");
-                free(arr);
+                free_matrix(&arr);
                 break ;
             }
         }
         else{
             show_error_msg("Indicadores de colores erroneos\n");
-            free(arr);
+            free_matrix(&arr);
             break ;
         }
-        free(arr);
+        free_matrix(&arr);
         i++;
     }
     return (0);
