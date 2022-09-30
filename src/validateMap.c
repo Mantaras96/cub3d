@@ -51,17 +51,48 @@ void validate_first_last_row(t_global *global){
 
 	j = 0;
 	while(global->nums[0][j]){
-		if (global->nums[0][j] != 32 || global->nums[0][j] != '1')
-			printf("Error primera linea");
+		if (global->nums[0][j] != 32 && global->nums[0][j] != '1' && global->nums[0][j] != '\n' && global->nums[0][j] != '\t') // Se puede quitar el \n si se hace un split antes.
+			printf("Error primera linea"); // Tirar error y que no siga. 
 		j++;
 	}
 
 	j = 0;
 	i = ft_matrix_len(global->nums) - 1;
 	while(global->nums[i][j]){
-		if (global->nums[i][j] != 32 || global->nums[0][j] != '1')
-			printf("Error ultima linea");
+		if (global->nums[i][j] != 32 && global->nums[i][j] != '1' && global->nums[i][j] != '\n' && global->nums[i][j] != '\t') // Se puede quitar el \n si se hace un split antes.
+			printf("Error ultima linea"); // Tirar error y que no siga. 
 		j++;
+	}
+}
+
+int is_space_tab(char c){
+	if (c == 32 || c == '\t'){
+		return (1);
+	}
+	return (0);
+}
+
+void check_directions(int i, int j, t_global *global){
+	//printf("Error posicion[%d][%d][%c][%d][%d][%d][%d]\n", i, j, global->nums[i][j], is_space_tab(global->nums[i][j + 1]), is_space_tab(global->nums[i][j  - 1]), is_space_tab(global->nums[i - 1][j]), is_space_tab(global->nums[i + 1][j]));
+	if (is_space_tab(global->nums[i - 1][j]) || is_space_tab(global->nums[i + 1][j]) || is_space_tab(global->nums[i][j - 1]) || is_space_tab(global->nums[i][j + 1])){
+		printf("Error posicion[%d][%d]", i, j);
+	} 
+}
+
+void validate_all_different_wall(t_global *global){
+	int i;
+	int j;
+
+	i = 1;
+	while (global->nums[i]){
+		j = 0;
+		while (global->nums[i][j]){
+			if (global->nums[i][j] == '0' || global->nums[i][j] == 'N' || global->nums[i][j] == 'S'  || global->nums[i][j] == 'E'  || global->nums[i][j] == 'W'){
+				check_directions(i, j, global);
+			}
+			j++;
+		} 
+		i++;
 	}
 }
 
@@ -82,9 +113,8 @@ void validate_map(t_global *global){
 	//4
 	global->count_player = 0;
 	validate_one_player(global);
-	printf("\nPlayers: %d", global->count_player);
 	// //1 Validate first character and last
-	validate_rows(global);
+	//validate_rows(global);
 	validate_first_last_row(global);
-
+	validate_all_different_wall(global);
 }
