@@ -44,6 +44,7 @@ typedef struct s_global
 	int			lines_textures;
 	int			lines_colors;
 	int			lines_maps;
+	int			max_lenght;
 }	t_global;
 
 void	show_error_msg( char *str);
