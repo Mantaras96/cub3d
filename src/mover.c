@@ -93,7 +93,6 @@ int	mover(int keycode, t_global *global)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(global->mlx, global->win);
-		free_all(global);
 		exit(0);
 	}
 	return (0);
