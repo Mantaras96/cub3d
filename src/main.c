@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertmantaras <albertmantaras@student.    +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:22:17 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/23 20:35:52 by albertmanta      ###   ########.fr       */
+/*   Updated: 2022/09/30 16:49:39 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int argc, char **argv)
 			return (0);
 		validate_textures(&global);
 		validate_colors(&global);
+		validate_map(&global);
 		set_mlx_and_window(&global);
 		mlx_hook(global.win, 2, 0, mover, &global);
 		mlx_hook(global.win, 17, 0, close_event, &global);
