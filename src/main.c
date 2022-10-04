@@ -18,11 +18,24 @@ int	close_event(void)
 	return (0);
 }
 
-void	set_mlx_and_window(t_global *global)
+void	set_mlx_windows_and_pistolon(t_global *global)
 {
+	t_image	img;
+	void *image;
 	global->mlx = mlx_init();
 	global->win = mlx_new_window(global->mlx,
-			1920, 1080, "cub3d");
+			WIDTH, HEIGHT, "cub3d");
+
+	image = mlx_new_image(global->mlx, img.x, img.y);
+	img.pointer = mlx_xpm_file_to_image(image, "assets/sprites/pistol.xpm", &img.x, &img.y);
+	img.pixels  = mlx_get_data_addr(image, &img.bits_per_pixel, &img.line_size, &img.endian);
+	mlx_put_image_to_window(global->mlx, global->win, img.pointer, 825, 870);
+
+	image = mlx_new_image(global->mlx, img.x, img.y);
+	img.pointer = mlx_xpm_file_to_image(image, "assets/sprites/crosshair.xpm", &img.x, &img.y);
+	img.pixels  = mlx_get_data_addr(image, &img.bits_per_pixel, &img.line_size, &img.endian);
+	mlx_put_image_to_window(global->mlx, global->win, img.pointer, 930, 513);
+
 }
 int count_file_lines(t_global *global, int i)
 {
@@ -75,18 +88,33 @@ int count_lines(t_global *global)
 int	main(int argc, char **argv)
 {
 	t_global	global;
+	t_all *all;
 
 	if (argc == 2)
 	{
+		if (!(all = malloc(sizeof(t_all))))
+		{
+			printf("t_all in struct_assigner.c\n");
+			return (0);
+		}
+		if (!(all->ray = malloc(sizeof(t_ray))))
+		{
+			printf("t_ray in struct_assigner.c\n");
+			return (0);
+		}
 		validate_and_read_map(argv[1], &global);
 		if(!count_lines(&global))
 			show_error_msg("Error numero de texturas\n");
 		if(!split_map(&global))
 			return (0);
 		validate_textures(&global);
-		validate_colors(&global);
-		validate_map(&global);
-		set_mlx_and_window(&global);
+		validate_colors(&global); //falta guardar los colores correctamente
+		init_data(all);
+		//validate_map(&global);
+		set_mlx_windows_and_pistolon(&global);
+		
+
+		mlx_loop_hook(global.mlx, main_loop, all);
 		mlx_hook(global.win, 2, 0, mover, &global);
 		mlx_hook(global.win, 17, 0, close_event, &global);
 		mlx_loop(global.mlx);

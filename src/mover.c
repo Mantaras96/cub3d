@@ -83,7 +83,7 @@ void free_all(t_global *global)
 {
 	free_matrix(&global->textures);
 	free_matrix(&global->colors);
-	free_matrix(&global->nums);
+	//free_matrix(&global->nums);
 	free_matrix(&global->map);
 	free(global);
 }

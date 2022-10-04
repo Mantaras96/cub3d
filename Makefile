@@ -9,7 +9,8 @@ SRC	=	src/main.c \
 		src/split_map.c \
 		src/validateMap.c \
 		src/validate_textures.c \
-		src/validate_colors.c 
+		src/validate_colors.c \
+		src/init_ray.c
 
 NAME 	= 	cub3d
 
