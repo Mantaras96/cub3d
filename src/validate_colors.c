@@ -42,14 +42,14 @@ int validate_colors(t_global *global)
         {
             if (check_nums(arr[1]))
             {
-                show_error_msg("Colores erroneos");
                 free_matrix(&arr);
+                show_error_msg(1, "Error colores");
                 break ;
             }
         }
         else{
-            show_error_msg("Indicadores de colores erroneos\n");
             free_matrix(&arr);
+            show_error_msg(2, "Error colores");
             break ;
         }
         free_matrix(&arr);

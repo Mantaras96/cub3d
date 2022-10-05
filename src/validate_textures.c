@@ -51,14 +51,14 @@ int validate_textures(t_global *global)
         {
             if (access_textures(arr[1], global, i))
             {
-                show_error_msg("Error en las rutas de las texturas\n");
                 free_matrix(&arr);
+                show_error_msg(1, "Error ruta de las texturas\n");
                 break ;
             }
         }
         else {
-            show_error_msg("Identificador de las texturas erroneo.\n");
             free_matrix(&arr);
+            show_error_msg(1, "Identificador de las texturas erroneo.\n");
             break ;
         }
             free_matrix(&arr);
