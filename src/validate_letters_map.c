@@ -19,7 +19,7 @@ void	validate_rectangle_walls(t_global *global)
 
 	i = 0;
 	if (global->height == global->width)
-		show_error_msg("Error\n El mapa tiene que ser rectangular.");
+		show_error_msg(1, "Error\n El mapa tiene que ser rectangular.");
 	while (i < global->height)
 	{
 		j = 0;
@@ -28,12 +28,12 @@ void	validate_rectangle_walls(t_global *global)
 			if (i == 0 || i == global->height - 1)
 			{
 				if (global->map[i][j] != '1' && global->map[i][j] != '\n')
-					show_error_msg("Error\n paredes ultima primera linea");
+					show_error_msg(1,"Error\n paredes ultima primera linea");
 			}
 			else if (j == 0 || j == global->width - 2)
 			{
 				if (global->map[i][j] != '1')
-					show_error_msg("Error\n paredes lineas del medio");
+					show_error_msg(1, "Error\n paredes lineas del medio");
 			}
 			j++;
 		}
@@ -62,7 +62,7 @@ void	read_line(char *map, t_global *global)
 void	validate_all_leters(t_global *global)
 {
 	if (global->count_player > 1 || global->count_player == 0)
-		show_error_msg("Error\n de jugadores.");
+		show_error_msg(1, "Error\n de jugadores.");
 }
 
 void	validate_letters_map(t_global *global)

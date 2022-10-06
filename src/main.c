@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 	{
 		validate_and_read_map(argv[1], &all);
 		if(!count_lines(&all.global))
-			show_error_msg("Error numero de texturas\n");
+			show_error_msg(1, "Error numero de texturas\n");
 		if(!split_map(&all.global))
 			return (0);
 		validate_textures(&all.global);
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		show_error_msg("Error numero de parametro incorrecto");
+		show_error_msg(1, "Error numero de parametro incorrecto");
 		return (0);
 	}
 	return (0);

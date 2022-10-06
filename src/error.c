@@ -14,7 +14,7 @@
 
 void	show_error_msg(int option, char *str)
 {
-	void (*str);
+	str = NULL;
 	if (option == 1){
 		printf("Error en las texturas");
 	} else if (option == 2){

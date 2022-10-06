@@ -26,10 +26,10 @@ char	**read_map(char *filename, t_global *global)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		show_error_msg("Error\n La ruta del mapa no es correcta");
+		show_error_msg(1, "Error\n La ruta del mapa no es correcta");
 	global->map = ft_calloc(sizeof(char *), 1);
 	if (global->map == NULL)
-		show_error_msg("Error\n de memoria.\n");
+		show_error_msg(1, "Error\n de memoria.\n");
 	while (1)
 	{
 		line = get_next_line(fd);

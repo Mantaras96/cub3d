@@ -24,7 +24,7 @@ int malloc_maps(t_global *global)
     global->nums[global->lines_maps] = NULL;
     if(!global->textures || !global->colors || !global->nums)
     {
-        show_error_msg("Malloc error");
+        show_error_msg(1, "Malloc error");
         return (0);
     }
     return (1);
