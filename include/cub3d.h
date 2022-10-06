@@ -123,6 +123,8 @@ typedef struct s_all
 
 void	show_error_msg( char *str);
 char	**validate_and_read_map(char *filename, t_all *all);
+void	show_error_msg(int option, char *str);
+char	**validate_and_read_map(char *filename, t_global *global);
 char	**read_map(char *filename, t_global *global);
 int		array_str_count(char **arr);
 int		ft_validate_name(char *filename);

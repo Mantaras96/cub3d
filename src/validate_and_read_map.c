@@ -6,7 +6,7 @@
 /*   By: albertmantaras <albertmantaras@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:22:17 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/23 20:36:21 by albertmanta      ###   ########.fr       */
+/*   Updated: 2022/10/05 20:33:41 by albertmanta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ char	**read_map(char *filename, t_global *global)
 int	ft_validate_name(char *filename)
 {
 	if (!ft_strnstr(filename, ".cub", ft_strlen(filename)))
-	{
-		show_error_msg("Error\n El mapa no tiene la extension correcta");
-		return (1);
-	}
+		show_error_msg(3, "Error extension mapa");
 	return (0);
 }
 
