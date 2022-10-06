@@ -87,37 +87,29 @@ int count_lines(t_global *global)
 
 int	main(int argc, char **argv)
 {
-	t_global	global;
-	t_all *all;
+	t_all all;
 
 	if (argc == 2)
 	{
-		if (!(all = malloc(sizeof(t_all))))
-		{
-			printf("t_all in struct_assigner.c\n");
-			return (0);
-		}
-		if (!(all->ray = malloc(sizeof(t_ray))))
-		{
-			printf("t_ray in struct_assigner.c\n");
-			return (0);
-		}
-		validate_and_read_map(argv[1], &global);
-		if(!count_lines(&global))
+		validate_and_read_map(argv[1], &all);
+		if(!count_lines(&all.global))
 			show_error_msg("Error numero de texturas\n");
-		if(!split_map(&global))
+		if(!split_map(&all.global))
 			return (0);
-		validate_textures(&global);
-		validate_colors(&global); //falta guardar los colores correctamente
-		init_data(all);
+		validate_textures(&all.global);
+		validate_colors(&all.global); //falta guardar los colores correctamente
+		init_data(&all);
 		//validate_map(&global);
-		set_mlx_windows_and_pistolon(&global);
-		
+		//set_mlx_windows_and_pistolon(&global);
+		all.global.mlx = mlx_init();
+		all.global.win = mlx_new_window(all.global.mlx,
+			WIDTH, HEIGHT, "cub3d");
 
-		mlx_loop_hook(global.mlx, main_loop, all);
-		mlx_hook(global.win, 2, 0, mover, &global);
-		mlx_hook(global.win, 17, 0, close_event, &global);
-		mlx_loop(global.mlx);
+		
+		mlx_hook(all.global.win, 2, 0, mover, &all);
+		mlx_hook(all.global.win, 17, 0, close_event, &all);
+		mlx_loop_hook(all.global.mlx, main_loop, &all);
+		mlx_loop(all.global.mlx);
 	}
 	else
 	{
@@ -126,3 +118,5 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
+
+

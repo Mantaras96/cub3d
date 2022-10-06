@@ -88,24 +88,24 @@ void free_all(t_global *global)
 	free(global);
 }
 
-int	mover(int keycode, t_global *global)
+int	mover(int keycode, t_all *all)
 {	
 	if (keycode == 53)
 	{
-		mlx_destroy_window(global->mlx, global->win);
+		mlx_destroy_window(all->global.mlx, all->global.win);
 		exit(0);
 	}
 	return (0);
 }
 
-void	clean_img(t_global *global)
+void	clean_img(t_all *all)
 {
 	int	i;
 
 	i = 0;
-	while (global->img[i])
+	while (all->global.img[i])
 	{
-		mlx_destroy_image(global->mlx, global->img[i]);
+		mlx_destroy_image(all->global.mlx, all->global.img[i]);
 		i++;
 	}
 }

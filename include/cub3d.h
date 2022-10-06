@@ -27,33 +27,12 @@ typedef struct s_corde
 }	t_corde;
 
 
-typedef struct s_data
+typedef struct s_mapa
 {
-	double posX;
-	double posY;
-	double dirX;
-	double dirY;
-	double planeX;
-	double planeY;
-	double	moveSpeed;
-	double	rotSpeed;
-	double cameraX;
-	double rayX;
-	double rayY;
-	int mapX;
-	int mapY;
-	int stepX;
-	int stepY;
-	double sideX;
-	double sideY;
-	double deltaX;
-	double deltaY;
-	double lenWall;
-	int x;
-	int side;
-	int wall;
+	char		**nums;
+}	t_mapa;
 
-} 	t_data;
+
 
 typedef struct s_global
 {
@@ -87,20 +66,15 @@ typedef struct s_pos
 {
 	double	pos_x;
 	double	pos_y;
+	double 	ray_x;
+	double 	ray_y;
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
 	double	move_speed;
 	double	rot_speed;
-
-}	t_pos;
-
-typedef struct s_ray
-{
 	double	camera_x;
-	double	dir_x;
-	double	dir_y;
 	int		map_x;
 	int		map_y;
 	double	side_dist_x;
@@ -115,13 +89,14 @@ typedef struct s_ray
 	int		line_h;
 	int		draw_start;
 	int		draw_end;
-}	t_ray;
+
+}	t_pos;
 
 typedef struct s_all
 {
 	t_pos pos;
-	t_ray *ray;
-	t_global *global;
+	t_global global;
+	t_mapa mapa;
 }	t_all;
 
 typedef struct	s_image
@@ -136,7 +111,7 @@ typedef struct	s_image
 }   t_image;
 
 void	show_error_msg( char *str);
-char	**validate_and_read_map(char *filename, t_global *global);
+char	**validate_and_read_map(char *filename, t_all *all);
 char	**read_map(char *filename, t_global *global);
 int		array_str_count(char **arr);
 int		ft_validate_name(char *filename);
@@ -149,12 +124,12 @@ int		get_total_img(t_global *global);
 void	**create_img_arr(t_global *global);
 void	show_map(t_global *global);
 void	set_mlx_and_window(t_global *global);
-int		mover(int keycode, t_global *global);
+int		mover(int keycode, t_all *all);
 void	move_main_char(t_global *global);
 int		can_move(t_global *global);
 char	get_direction(int keycode);
 int		ft_strcmp(const char *str1, const char *str2);
-void	clean_img(t_global *global);
+void	clean_img(t_all *all);
 int		close_event(void);
 void	*transform_img(void *mlx, char *image);
 int 	split_map(t_global *global);
