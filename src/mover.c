@@ -88,13 +88,42 @@ void free_all(t_global *global)
 	free(global);
 }
 
+int release (int keycode, t_all *all)
+{
+	if (keycode == KEY_UP && all->corde.w == 1)
+		all->corde.w = 0;
+	if (keycode == KEY_DOWN && all->corde.s == 1)
+		all->corde.s = 0;
+	if (keycode == KEY_RIGHT && all->corde.d == 1)
+		all->corde.d = 0;
+	if (keycode == KEY_LEFT && all->corde.a == 1)
+		all->corde.a = 0;
+	if (keycode == KEY_RIGHT_VISION && all->corde.right == 1)
+		all->corde.right = 0;
+	if (keycode == KEY_LEFT_VISION && all->corde.left == 1)
+		all->corde.left = 0;
+	return (0);
+}
 int	mover(int keycode, t_all *all)
 {	
 	if (keycode == 53)
 	{
+		mlx_clear_window(all->global.mlx, all->global.win);
 		mlx_destroy_window(all->global.mlx, all->global.win);
 		exit(0);
 	}
+	if (keycode == KEY_UP && all->corde.w == 0)
+		all->corde.w = 1;
+	if (keycode == KEY_DOWN && all->corde.s == 0)
+		all->corde.s = 1;
+	if (keycode == KEY_RIGHT && all->corde.d == 0)
+		all->corde.d = 1;
+	if (keycode == KEY_LEFT && all->corde.a == 0)
+		all->corde.a = 1;
+	if (keycode == KEY_RIGHT_VISION && all->corde.right == 0)
+		all->corde.right = 1;
+	if (keycode == KEY_LEFT_VISION && all->corde.left == 0)
+		all->corde.left = 1;
 	return (0);
 }
 

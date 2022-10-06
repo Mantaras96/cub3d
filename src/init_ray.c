@@ -9,12 +9,13 @@ void init_data(t_all *all)
 	all->pos.dir_x = -1;
 	all->pos.plane_x = 0;
 	all->pos.plane_y = 0.66;
+	all->pos.move_speed = 0.05;
+	all->pos.rot_speed = 0.05;
 }
 
 void verLine(t_all *all, int color, int x)
 {
 	int	y;
-
 	y = all->pos.draw_start;
 	while (y <= all->pos.draw_end)
 	{
@@ -109,13 +110,31 @@ void draw(t_all *all)
 void color(t_all *all, int x)
 {
     int color;
-    if (all->global.nums[all->pos.map_y][all->pos.map_x] == '1')
+    if (all->global.nums[all->pos.map_x][all->pos.map_y] == '1')
         color = 0xFF0000;
-    else if (all->global.nums[all->pos.map_y][all->pos.map_x] == '0')
+    else if (all->global.nums[all->pos.map_x][all->pos.map_y] == '0')
         color = 0x00FF00;
+	else if (all->global.nums[all->pos.map_x][all->pos.map_y] == '3')
+		color = 0x0000FF;
+	else if (all->global.nums[all->pos.map_x][all->pos.map_y] == '4')
+		color = 0xFFFFFF;
+	else
+		color = 0xFFFF00;
     if (all->pos.side == 1)
         color = color / 2;
     verLine(all, color, x);
+}
+
+void ceiling(t_all *all, int x)
+{
+	int y = 0;
+	y = all->pos.draw_end;
+	y--;
+	while (y < HEIGHT)
+	{
+		mlx_pixel_put(all->global.mlx, all->global.win, x, y, (0xFFF0 / 2));
+		y++;
+	}
 }
 
 
@@ -131,8 +150,10 @@ void	calc(t_all *all)
         get_dist(all);
         draw(all);
         color(all, x);
+		ceiling(all, x);
 		x++;
 	}
+	key_move(all);
 }
 
 int	main_loop(t_all *all)

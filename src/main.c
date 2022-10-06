@@ -18,24 +18,22 @@ int	close_event(void)
 	return (0);
 }
 
-void	set_mlx_windows_and_pistolon(t_global *global)
+void	set_mlx_windows_and_pistolon(t_all *all)
 {
-	t_image	img;
-	void *image;
-	global->mlx = mlx_init();
-	global->win = mlx_new_window(global->mlx,
+	
+	all->global.mlx = mlx_init();
+	all->global.win = mlx_new_window(all->global.mlx,
 			WIDTH, HEIGHT, "cub3d");
 
-	image = mlx_new_image(global->mlx, img.x, img.y);
-	img.pointer = mlx_xpm_file_to_image(image, "assets/sprites/pistol.xpm", &img.x, &img.y);
-	img.pixels  = mlx_get_data_addr(image, &img.bits_per_pixel, &img.line_size, &img.endian);
-	mlx_put_image_to_window(global->mlx, global->win, img.pointer, 825, 870);
+	all->image.image = mlx_new_image(all->global.mlx, all->image.x, all->image.y);
+	all->image.pointer = mlx_xpm_file_to_image(all->image.image, "assets/sprites/pistol.xpm", &all->image.x, &all->image.y);
+	all->image.pixels  = mlx_get_data_addr(all->image.image, &all->image.bits_per_pixel, &all->image.line_size, &all->image.endian);
+	mlx_put_image_to_window(all->global.mlx, all->global.win, all->image.pointer, 825, 870);
 
-	image = mlx_new_image(global->mlx, img.x, img.y);
-	img.pointer = mlx_xpm_file_to_image(image, "assets/sprites/crosshair.xpm", &img.x, &img.y);
-	img.pixels  = mlx_get_data_addr(image, &img.bits_per_pixel, &img.line_size, &img.endian);
-	mlx_put_image_to_window(global->mlx, global->win, img.pointer, 930, 513);
-
+	all->image.image = mlx_new_image(all->global.mlx, all->image.x, all->image.y);
+	all->image.pointer = mlx_xpm_file_to_image(all->image.image, "assets/sprites/crosshair.xpm", &all->image.x, &all->image.y);
+	all->image.pixels  = mlx_get_data_addr(all->image.image, &all->image.bits_per_pixel, &all->image.line_size, &all->image.endian);
+	mlx_put_image_to_window(all->global.mlx, all->global.win, all->image.pointer, 930, 513);
 }
 int count_file_lines(t_global *global, int i)
 {
@@ -100,13 +98,11 @@ int	main(int argc, char **argv)
 		validate_colors(&all.global); //falta guardar los colores correctamente
 		init_data(&all);
 		//validate_map(&global);
-		//set_mlx_windows_and_pistolon(&global);
-		all.global.mlx = mlx_init();
-		all.global.win = mlx_new_window(all.global.mlx,
-			WIDTH, HEIGHT, "cub3d");
 
-		
+		set_mlx_windows_and_pistolon(&all);
+
 		mlx_hook(all.global.win, 2, 0, mover, &all);
+		mlx_hook(all.global.win, 3, 0, release, &all);
 		mlx_hook(all.global.win, 17, 0, close_event, &all);
 		mlx_loop_hook(all.global.mlx, main_loop, &all);
 		mlx_loop(all.global.mlx);

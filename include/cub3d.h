@@ -18,20 +18,26 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define KEY_UP					13
+# define KEY_DOWN				1
+# define KEY_RIGHT				2
+# define KEY_LEFT				0
+# define KEY_RIGHT_VISION		124
+# define KEY_LEFT_VISION		123
+# define ESCAPE					53
 
 typedef struct s_corde
 {
 	int		x;
 	int		y;
 	char	direction;
+	int				w;
+	int				s;
+	int				d;
+	int				a;
+	int				right;
+	int				left;
 }	t_corde;
-
-
-typedef struct s_mapa
-{
-	char		**nums;
-}	t_mapa;
-
 
 
 typedef struct s_global
@@ -60,6 +66,7 @@ typedef struct s_global
 	char		**path_textures;
 	char		**path_colors;
 	char		**num2;
+	int			rgb;
 }	t_global;
 
 typedef struct s_pos
@@ -92,16 +99,10 @@ typedef struct s_pos
 
 }	t_pos;
 
-typedef struct s_all
-{
-	t_pos pos;
-	t_global global;
-	t_mapa mapa;
-}	t_all;
-
 typedef struct	s_image
 {
 	void      *pointer;
+	void *image;
 	int 		x;
 	int			y;	
 	char      *pixels;
@@ -109,6 +110,16 @@ typedef struct	s_image
 	int       line_size;
 	int       endian;
 }   t_image;
+
+typedef struct s_all
+{
+	t_pos pos;
+	t_global global;
+	t_corde corde;
+	t_image image;
+}	t_all;
+
+
 
 void	show_error_msg( char *str);
 char	**validate_and_read_map(char *filename, t_all *all);
@@ -140,10 +151,11 @@ int 	validate_textures(t_global *global);
 int access_textures(const char *filename, t_global *global, int i);
 int 	validate_colors(t_global *global);
 void	free_matrix(char ***matrix);
-void	set_mlx_windows_and_pistolon(t_global *global);
+void	set_mlx_windows_and_pistolon(t_all *all);
 void	calc(t_all *all);
 int	main_loop(t_all *all);
-
+int release (int keycode, t_all *all);
 void init_data(t_all *all);
+int key_move (t_all *all);
 
 #endif
