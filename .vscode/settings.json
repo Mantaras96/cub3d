@@ -4,6 +4,7 @@
         "__locale": "c",
         "ios": "c",
         "cmath": "c",
-        "complex": "c"
+        "complex": "c",
+        "algorithm": "c"
     }
 }

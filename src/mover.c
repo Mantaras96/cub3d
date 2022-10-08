@@ -90,6 +90,7 @@ void free_all(t_global *global)
 
 int release (int keycode, t_all *all)
 {
+	
 	if (keycode == KEY_UP && all->corde.w == 1)
 		all->corde.w = 0;
 	if (keycode == KEY_DOWN && all->corde.s == 1)
@@ -105,7 +106,7 @@ int release (int keycode, t_all *all)
 	return (0);
 }
 int	mover(int keycode, t_all *all)
-{	
+{	//printf("%d\n", keycode);
 	if (keycode == 53)
 	{
 		mlx_clear_window(all->global.mlx, all->global.win);

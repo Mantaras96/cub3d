@@ -50,6 +50,10 @@ typedef struct s_global
     char        **textures;
     char        **colors;
 	char		**nums;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	int			empty_line;
 	int			empty_line_2;
 	int			width;
@@ -66,7 +70,9 @@ typedef struct s_global
 	char		**path_textures;
 	char		**path_colors;
 	char		**num2;
-	int			rgb;
+	int			rgbF;
+	int			rgbC;
+	int			color;
 }	t_global;
 
 typedef struct s_pos
@@ -96,6 +102,16 @@ typedef struct s_pos
 	int		line_h;
 	int		draw_start;
 	int		draw_end;
+	int				tex_width;
+	int				tex_height;
+	int				tex_num;
+	int				tex_x;
+	int				tex_y;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	void			*textura;
+	unsigned int	*buffer;
 
 }	t_pos;
 
@@ -111,10 +127,55 @@ typedef struct	s_image
 	int       endian;
 }   t_image;
 
+typedef struct s_text_norte
+{
+	int				bits_per_pixel;
+	int				line_lenght;
+	int				endian;
+	void			*tex_norte;
+	int				tex_width;
+	int				tex_height;
+}	t_text_norte;
+
+typedef struct s_text_sud
+{
+	int				bits_per_pixel;
+	int				line_lenght;
+	int				endian;
+	void			*tex_sud;
+	int				tex_width;
+	int				tex_height;
+}	t_text_sud;
+
+typedef struct t_text_oeste
+{
+	int				bits_per_pixel;
+	int				line_lenght;
+	int				endian;
+	void			*tex_oeste;
+	int				tex_width;
+	int				tex_height;
+}	t_text_oeste;
+
+typedef struct s_text_este
+{
+	int				bits_per_pixel;
+	int				line_lenght;
+	int				endian;
+	void			*tex_este;
+	int				tex_width;
+	int				tex_height;
+}	t_text_este;
+
+
 typedef struct s_all
 {
 	t_pos pos;
 	t_global global;
+	t_text_norte text_norte;
+	t_text_sud text_sud;
+	t_text_este text_este;
+	t_text_oeste text_oeste;
 	t_corde corde;
 	t_image image;
 }	t_all;
@@ -158,5 +219,7 @@ int	main_loop(t_all *all);
 int release (int keycode, t_all *all);
 void init_data(t_all *all);
 int key_move (t_all *all);
+void ft_texture(t_all *all);
+void ft_get_textures(t_all *all);
 
 #endif
