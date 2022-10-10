@@ -24,6 +24,7 @@ void	set_mlx_windows_and_pistolon(t_all *all)
 	all->global.mlx = mlx_init();
 	all->global.win = mlx_new_window(all->global.mlx,
 			WIDTH, HEIGHT, "cub3d");
+			
 
 	// all->image.image = mlx_new_image(all->global.mlx, all->image.x, all->image.y);
 	// all->image.pointer = mlx_xpm_file_to_image(all->image.image, "assets/sprites/pistol.xpm", &all->image.x, &all->image.y);
@@ -100,7 +101,11 @@ int	main(int argc, char **argv)
 		init_data(&all);
 		//validate_map(&global);
 
-		set_mlx_windows_and_pistolon(&all);
+		//set_mlx_windows_and_pistolon(&all);
+		all.global.mlx = mlx_init();
+		all.global.win = mlx_new_window(all.global.mlx,
+			WIDTH, HEIGHT, "cub3d");
+
 
 		all.global.img = mlx_new_image(all.global.mlx, WIDTH,
 		HEIGHT);

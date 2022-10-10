@@ -1,7 +1,7 @@
-NO ./assets/sprites/lava.xpm
-SO ./assets/sprites/purplestone.xpm
-WE ./assets/sprites/puerta.xpm
-EA ./assets/sprites/flor.xpm
+NO ./assets/sprites/wall1.xpm
+SO ./assets/sprites/wall2.xpm
+WE ./assets/sprites/wall3.xpm
+EA ./assets/sprites/wall4.xpm
 
 F 250,100,0
 C 225,30,0

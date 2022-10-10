@@ -20,6 +20,14 @@ void init_data(t_all *all)
 	all->pos.plane_y = 0.66;
 	all->pos.move_speed = 0.05;
 	all->pos.rot_speed = 0.05;
+	all->pos.buffer = NULL;
+	all->pos.tex_num = 0;
+	all->pos.tex_x = 0;
+	all->pos.step_x = 0;
+	all->pos.step_y = 0;
+	all->pos.tex_y = 0;
+	all->pos.tex_width = 0;
+	all->pos.tex_height = 0;
 }
 
 void verLine(t_all *all, int color, int x)
@@ -167,14 +175,24 @@ void texturing(t_all *all)
 
 void printing(t_all *all, int x, int y)
 {
+	y = -1;
+	while (y++ < all->pos.draw_start)
+		my_mlx_pixel_put(all, x, y, all->global.rgbC);
 	y = all->pos.draw_start;
 	ft_get_textures(all);
-	while(y < all->pos.draw_end)
+	y--;
+	while(y++ < all->pos.draw_end)
 	{
 		all->pos.tex_y = (int)all->pos.tex_pos;
 		all->pos.tex_pos += all->pos.step;
 		all->global.color = all->pos.buffer[all->pos.tex_width * all->pos.tex_y + all->pos.tex_x];
 		my_mlx_pixel_put(all, x, y, all->global.color);
+		y++;
+	}
+	y--;
+	while(y < HEIGHT)
+	{
+		my_mlx_pixel_put(all, x, y, all->global.rgbF);
 		y++;
 	}
 }
@@ -202,7 +220,7 @@ void put_pistolon(t_all *all)
 	// //mlx_put_image_to_window(all->global.mlx, all->global.win, all->image.pointer, 930, 513);
 }
 
-void	calc(t_all *all)
+int	main_loop(t_all *all)
 {
     int x;
 	int y;
@@ -216,24 +234,16 @@ void	calc(t_all *all)
         get_dist(all);
         draw(all);
 		texturing(all);
-        color(all);
+        //color(all);
 		printing(all, x, y);
-		ceiling(all, x);
-		floror(all, x);
+		//  ceiling(all, x);
+		//  floror(all, x);
 		x++;
 	}
-	
 	mlx_put_image_to_window(all->global.mlx, all->global.win,
 	all->global.img, 0, 0);
 	//put_pistolon(all);
-	// mlx_put_image_to_window(all->global.mlx, all->global.win,
-	// all->image.image, 0, 0);
 	key_move(all);
+	return (1);
 	
-}
-
-int	main_loop(t_all *all)
-{
-	calc(all);
-	return (0);
 }

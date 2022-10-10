@@ -26,13 +26,16 @@ void ft_get_textures2(t_all *all)
 {
     if (all->pos.side == 1 && all->pos.step_y == 1)
     {
+        printf("aleste\n");
         all->pos.tex_width = all->text_este.tex_width;
         all->pos.tex_height = all->text_este.tex_height;
         all->pos.textura = all->text_este.tex_este;
         all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura, &all->text_este.bits_per_pixel, &all->text_este.line_lenght, &all->text_este.endian);
+
     }
     if (all->pos.side == 1 && all->pos.step_y == -1)
     {
+        printf("aloeste\n");
         all->pos.tex_width = all->text_oeste.tex_width;
         all->pos.tex_height = all->text_oeste.tex_height;
         all->pos.textura = all->text_oeste.tex_oeste;
@@ -44,6 +47,7 @@ void ft_get_textures(t_all *all)
 {
     if (all->pos.side == 0 && all->pos.step_x == -1)
     {
+       //printf("alnorte\n");
         all->pos.tex_width = all->text_norte.tex_width;
         all->pos.tex_height = all->text_norte.tex_height;
         all->pos.textura = all->text_norte.tex_norte;
@@ -51,12 +55,29 @@ void ft_get_textures(t_all *all)
     }
     if (all->pos.side == 0 && all->pos.step_x == 1)
     {
+        //printf("alsur\n");
         all->pos.tex_width = all->text_sud.tex_width;
         all->pos.tex_height = all->text_sud.tex_height;
         all->pos.textura = all->text_sud.tex_sud;
         all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura, &all->text_sud.bits_per_pixel, &all->text_sud.line_lenght, &all->text_sud.endian);
     }
-    ft_get_textures2(all);
+      if (all->pos.side == 1 && all->pos.step_y == 1)
+    {
+        //printf("aleste\n");
+        all->pos.tex_width = all->text_este.tex_width;
+        all->pos.tex_height = all->text_este.tex_height;
+        all->pos.textura = all->text_este.tex_este;
+        all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura, &all->text_este.bits_per_pixel, &all->text_este.line_lenght, &all->text_este.endian);
+
+    }
+    if (all->pos.side == 1 && all->pos.step_y == -1)
+    {
+       //printf("aloeste\n");
+        all->pos.tex_width = all->text_oeste.tex_width;
+        all->pos.tex_height = all->text_oeste.tex_height;
+        all->pos.textura = all->text_oeste.tex_oeste;
+        all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura, &all->text_oeste.bits_per_pixel, &all->text_oeste.line_lenght, &all->text_oeste.endian);
+    }
 }
 
 int access_textures(const char *filename, t_global *global, int i)
