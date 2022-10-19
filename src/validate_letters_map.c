@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_letters_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: albertmantaras <albertmantaras@student.    +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:05:15 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/23 20:09:07 by albertmanta      ###   ########.fr       */
+/*   Updated: 2022/10/19 19:08:00 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	validate_rectangle_walls(t_global *global)
 			if (i == 0 || i == global->height - 1)
 			{
 				if (global->map[i][j] != '1' && global->map[i][j] != '\n')
-					show_error_msg(1,"Error\n paredes ultima primera linea");
+					show_error_msg(1, "Error\n paredes ultima primera linea");
 			}
 			else if (j == 0 || j == global->width - 2)
 			{
@@ -44,18 +44,11 @@ void	validate_rectangle_walls(t_global *global)
 void	read_line(char *map, t_global *global)
 {
 	int	i;
+
 	(void) global;
 	i = 0;
 	while (map[i])
-	
 	{
-		
-		// if (map[i] == 'P') //TODO: Cambiar la P por la direcciona a la que mira
-		// 	global->count_player++;
-		// else if (map[i] != '1' && map[i] != '\n'
-		// 	&& map[i] != '0')
-		// 	show_error_msg("Error\n Parametro desconocido en una linia.");
-		// i++;
 	}
 }
 
