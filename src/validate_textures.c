@@ -28,6 +28,29 @@ void	ft_texture(t_all *all)
 			&all->text_este.tex_height);
 }
 
+void	ft_get_text2(t_all *all)
+{
+	if (all->pos.side == 1 && all->pos.step_y == 1)
+	{
+		all->pos.tex_width = all->text_este.tex_width;
+		all->pos.tex_height = all->text_este.tex_height;
+		all->pos.textura = all->text_este.tex_este;
+		all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura,
+				&all->text_este.bits_per_pixel, &all->text_este.line_lenght,
+				&all->text_este.endian);
+	}
+	if (all->pos.side == 1 && all->pos.step_y == -1)
+	{
+		all->pos.tex_width = all->text_oeste.tex_width;
+		all->pos.tex_height = all->text_oeste.tex_height;
+		all->pos.textura = all->text_oeste.tex_oeste;
+		all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura,
+				&all->text_oeste.bits_per_pixel,
+				&all->text_oeste.line_lenght,
+				&all->text_oeste.endian);
+	}
+}
+
 void	ft_get_textures(t_all *all)
 {
 	if (all->pos.side == 0 && all->pos.step_x == -1)
@@ -48,25 +71,7 @@ void	ft_get_textures(t_all *all)
 				&all->text_sud.bits_per_pixel, &all->text_sud.line_lenght,
 				&all->text_sud.endian);
 	}
-	if (all->pos.side == 1 && all->pos.step_y == 1)
-	{
-		all->pos.tex_width = all->text_este.tex_width;
-		all->pos.tex_height = all->text_este.tex_height;
-		all->pos.textura = all->text_este.tex_este;
-		all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura,
-				&all->text_este.bits_per_pixel, &all->text_este.line_lenght,
-				&all->text_este.endian);
-	}
-	if (all->pos.side == 1 && all->pos.step_y == -1)
-	{
-		all->pos.tex_width = all->text_oeste.tex_width;
-		all->pos.tex_height = all->text_oeste.tex_height;
-		all->pos.textura = all->text_oeste.tex_oeste;
-		all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura,
-				&all->text_oeste.bits_per_pixel,
-				&all->text_oeste.line_lenght,
-				&all->text_oeste.endian);
-	}
+	ft_get_text2(all);
 }
 
 int	access_textures(char *filename, t_global *global, int i)
@@ -92,15 +97,8 @@ int	access_textures(char *filename, t_global *global, int i)
 	return (0);
 }
 
-int	validate_textures(t_global *global)
+int	validate_textures(t_global *global, int i, char **arr)
 {
-	int		i;
-	char	**arr;
-
-	i = 0;
-	global->path_textures
-		= malloc(sizeof(char *) * (global->lines_textures + 1));
-	global->path_textures[global->lines_textures] = NULL;
 	while (global->textures[i])
 	{
 		arr = ft_split(global->textures[i], ' ');

@@ -66,7 +66,11 @@ int	count_lines(t_global *global)
 int	main(int argc, char **argv)
 {
 	t_all	all;
-
+	int		i;
+	char	**arr;
+	
+	arr = NULL;
+	i = 0;
 	if (argc == 2)
 	{
 		validate_and_read_map(argv[1], &all);
@@ -74,8 +78,8 @@ int	main(int argc, char **argv)
 			show_error_msg(1, "Error numero de texturas\n");
 		if (!split_map(&all.global))
 			return (0);
-		validate_textures(&all.global);
-		validate_colors(&all.global);
+		validate_textures(&all.global, i, arr);
+		validate_colors(&all.global, i, arr);
 		ft_directions(&all);
 		init_data(&all);
 		all.global.mlx = mlx_init();

@@ -20,6 +20,9 @@ int	malloc_maps(t_global *global)
 	global->colors[global->lines_colors] = NULL;
 	global->nums = malloc(sizeof(char *) * (global->lines_maps + 1));
 	global->nums[global->lines_maps] = NULL;
+	global->path_textures
+		= malloc(sizeof(char *) * (global->lines_textures + 1));
+	global->path_textures[global->lines_textures] = NULL;
 	if (!global->textures || !global->colors || !global->nums)
 	{
 		show_error_msg(1, "Malloc error");
@@ -33,29 +36,26 @@ int	split_map(t_global *global)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	if (!malloc_maps(global))
 		return (0);
-	while (i < global->lines_textures)
+	while (++i < global->lines_textures)
 	{
 		global->textures[i] = ft_strdup(global->map[i]);
-		i++;
 	}
 	i = global->empty_line + i;
-	while (j < global->lines_colors)
+	while (++j < global->lines_colors)
 	{
 		global->colors[j] = ft_strdup(global->map[i]);
 		i++;
-		j++;
 	}
 	i = global->empty_line_2 + i;
-	j = 0;
-	while (j < global->lines_maps)
+	j = -1;
+	while (++j < global->lines_maps)
 	{
 		global->nums[j] = ft_strdup(global->map[i]);
 		i++;
-		j++;
 	}
 	return (1);
 }
