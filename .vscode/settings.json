@@ -5,6 +5,7 @@
         "ios": "c",
         "cmath": "c",
         "complex": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "libft.h": "c"
     }
 }
