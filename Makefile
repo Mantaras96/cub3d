@@ -14,7 +14,8 @@ SRC	=	src/main.c \
 		src/raycasting2.c\
 		src/key_move.c\
 		src/utils.c\
-		src/key_move_vision.c
+		src/key_move_vision.c\
+		src/ft_directions.c\
 
 NAME 	= 	cub3d
 

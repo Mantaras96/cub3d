@@ -11,14 +11,14 @@ void			my_mlx_pixel_put(t_all *all, int x, int y, int color)
 
 void init_data(t_all *all)
 {
-	all->pos.pos_x = 12;
-	all->pos.pos_y = 5;
-  	all->pos.dir_y = 0;
-	all->pos.dir_x = -1;
-	all->pos.plane_x = 0;
-	all->pos.plane_y = 0.66;
-	all->pos.move_speed = 0.05;
-	all->pos.rot_speed = 0.05;
+	// all->pos.pos_x = 12;
+	// all->pos.pos_y = 5;
+  	// all->pos.dir_y = 0;
+	// all->pos.dir_x = -1;
+	// all->pos.plane_x = 0;
+	// all->pos.plane_y = 0.66;
+	all->pos.move_speed = 0.04;
+	all->pos.rot_speed = 0.04;
 	all->pos.buffer = NULL;
 	all->pos.tex_num = 0;
 	all->pos.tex_x = 0;

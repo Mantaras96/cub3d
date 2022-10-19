@@ -227,6 +227,7 @@ void			my_mlx_pixel_put(t_all *all, int x, int y, int color);
 void move_left_vision(t_all *all);
 void move_right_vision(t_all *all);
 int	ft_strcmp(const char *str1, const char *str2);
+void ft_directions(t_all *all);
 
 
 
