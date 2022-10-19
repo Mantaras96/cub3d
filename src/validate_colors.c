@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:24:41 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 19:24:54 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/19 20:24:17 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	save_num(t_global *global, char *nums, int i)
 	if (i == 0)
 	{
 		arr = ft_split(nums, ',');
-		global->rgbF = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
+		global->rgb_f = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
 		free_matrix(&arr);
 	}	
 	if (i == 1)
 	{
 		arr = ft_split(nums, ',');
-		global->rgbC = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
+		global->rgb_c = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
 		free_matrix(&arr);
 	}
 	free_matrix(&arr);

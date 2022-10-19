@@ -6,11 +6,19 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:50:37 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 19:00:29 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/19 20:30:14 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+void	upgrade_values(t_corde *cordeplayer, t_global *global)
+{
+	global->count_player++;
+	cordeplayer->x = j;
+	cordeplayer->y = i;
+	cordeplayer->direction = global->nums[i][j];
+}
 
 void	validate_one_player(t_global *global)
 {
@@ -27,10 +35,7 @@ void	validate_one_player(t_global *global)
 			if (global->nums[i][j] == 'N' || global->nums[i][j] == 'S'
 				|| global->nums[i][j] == 'E' || global->nums[i][j] == 'W')
 			{
-				global->count_player++;
-				cordeplayer.x = j;
-				cordeplayer.y = i;
-				cordeplayer.direction = global->nums[i][j];
+				upgrade_values(&cordeplayer, global);
 			}
 			if (global->max_lenght < j)
 				global->max_lenght = j;

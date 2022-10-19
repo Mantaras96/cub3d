@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:39:55 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 19:40:05 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/19 20:24:17 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	printing(t_all *all, int x, int y)
 {
 	y = -1;
 	while (y++ < all->pos.draw_start)
-		my_mlx_pixel_put(all, x, y, (int)all->global.rgbC);
+		my_mlx_pixel_put(all, x, y, (int)all->global.rgb_c);
 	y = all->pos.draw_start;
 	ft_get_textures(all);
 	while (y < all->pos.draw_end)
@@ -49,7 +49,7 @@ void	printing(t_all *all, int x, int y)
 	}
 	while (y < HEIGHT)
 	{
-		my_mlx_pixel_put(all, x, y, (int)all->global.rgbF);
+		my_mlx_pixel_put(all, x, y, (int)all->global.rgb_f);
 		y++;
 	}
 }

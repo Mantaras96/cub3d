@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/19 20:24:42 by amantara          #+#    #+#             */
+/*   Updated: 2022/10/19 20:26:12 by amantara         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -39,7 +51,6 @@ typedef struct s_corde
 	int		left;
 }	t_corde;
 
-
 typedef struct s_global
 {
 	void		*mlx;
@@ -47,13 +58,13 @@ typedef struct s_global
 	void		*window;
 	void		**img;
 	char		**map;
-    char        **textures;
-    char        **colors;
+	char		**textures;
+	char		**colors;
 	char		**nums;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
 	int			empty_line;
 	int			empty_line_2;
 	int			width;
@@ -70,38 +81,38 @@ typedef struct s_global
 	char		**path_textures;
 	char		**path_colors;
 	char		**num2;
-	int			rgbF;
-	int			rgbC;
+	int			rgb_f;
+	int			rgb_c;
 	int			color;
 }	t_global;
 
 typedef struct s_pos
 {
-	double	pos_x;
-	double	pos_y;
-	double 	ray_x;
-	double 	ray_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	double	move_speed;
-	double	rot_speed;
-	double	camera_x;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_h;
-	int		draw_start;
-	int		draw_end;
+	double			pos_x;
+	double			pos_y;
+	double			ray_x;
+	double			ray_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			move_speed;
+	double			rot_speed;
+	double			camera_x;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_h;
+	int				draw_start;
+	int				draw_end;
 	int				tex_width;
 	int				tex_height;
 	int				tex_num;
@@ -115,17 +126,17 @@ typedef struct s_pos
 
 }	t_pos;
 
-typedef struct	s_image
+typedef struct s_image
 {
-	void      *pointer;
-	void *image;
-	int 		x;
-	int			y;	
-	char      *pixels;
-	int       bits_per_pixel;
-	int       line_size;
-	int       endian;
-}   t_image;
+	void		*pointer;
+	void		*image;
+	int			x;
+	int			y;
+	char		*pixels;
+	int			bits_per_pixel;
+	int			line_size;
+	int			endian;
+}	t_image;
 
 typedef struct s_text_norte
 {
@@ -167,20 +178,17 @@ typedef struct s_text_este
 	int				tex_height;
 }	t_text_este;
 
-
 typedef struct s_all
 {
-	t_pos pos;
-	t_global global;
-	t_text_norte text_norte;
-	t_text_sud text_sud;
-	t_text_este text_este;
-	t_text_oeste text_oeste;
-	t_corde corde;
-	t_image image;
+	t_pos			pos;
+	t_global		global;
+	t_text_norte	text_norte;
+	t_text_sud		text_sud;
+	t_text_este		text_este;
+	t_text_oeste	text_oeste;
+	t_corde			corde;
+	t_image			image;
 }	t_all;
-
-
 
 void	show_error_msg(int option, char *str);
 char	**validate_and_read_map(char *filename, t_all *all);
@@ -205,31 +213,29 @@ int		ft_strcmp(const char *str1, const char *str2);
 void	clean_img(t_all *all);
 int		close_event(void);
 void	*transform_img(void *mlx, char *image);
-int 	split_map(t_global *global);
+int		split_map(t_global *global);
 int		ft_matrix_len(char **matrix);
-int 	malloc_maps(t_global *global);
-void 	validate_map(t_global *global);
-int	validate_textures(t_global *global, int i, char **arr);
-int	access_textures(char *filename, t_global *global, int i);
-int	validate_colors(t_global *global, int i, char **arr);
+int		malloc_maps(t_global *global);
+void	validate_map(t_global *global);
+int		validate_textures(t_global *global, int i, char **arr);
+int		access_textures(char *filename, t_global *global, int i);
+int		validate_colors(t_global *global, int i, char **arr);
 void	free_matrix(char ***matrix);
 void	set_mlx_windows_and_pistolon(t_all *all);
 void	calc(t_all *all);
-int	main_loop(t_all *all);
-int release (int keycode, t_all *all);
-void init_data(t_all *all);
-int key_move (t_all *all);
-void ft_texture(t_all *all);
-void ft_get_textures(t_all *all);
-void printing(t_all *all, int x, int y);
-void texturing(t_all *all);
-void			my_mlx_pixel_put(t_all *all, int x, int y, int color);
-void move_left_vision(t_all *all);
-void move_right_vision(t_all *all);
-int	ft_strcmp(const char *str1, const char *str2);
-void ft_directions(t_all *all);
+int		main_loop(t_all *all);
+int		release(int keycode, t_all *all);
+void	init_data(t_all *all);
+int		key_move(t_all *all);
+void	ft_texture(t_all *all);
+void	ft_get_textures(t_all *all);
+void	printing(t_all *all, int x, int y);
+void	texturing(t_all *all);
+void	my_mlx_pixel_put(t_all *all, int x, int y, int color);
+void	move_left_vision(t_all *all);
+void	move_right_vision(t_all *all);
+int		ft_strcmp(const char *str1, const char *str2);
+void	ft_directions(t_all *all);
 void	mlx_init_data(t_all *all);
-
-
 
 #endif
