@@ -14,6 +14,7 @@ void validate_one_player(t_global *global){
 				global->count_player++;
 				cordeplayer.x = j;
 				cordeplayer.y = i;
+				cordeplayer.direction = global->nums[i][j];
 			}
 			if (global->max_lenght < j)
 				global->max_lenght = j; // Con salto de linea hay que quitarlos. 
@@ -114,7 +115,7 @@ void validate_map(t_global *global){
 	global->count_player = 0;
 	validate_one_player(global);
 	// //1 Validate first character and last
-	//validate_rows(global);
+	validate_rows(global);
 	validate_first_last_row(global);
 	validate_all_different_wall(global);
 }

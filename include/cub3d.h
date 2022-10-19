@@ -31,12 +31,12 @@ typedef struct s_corde
 	int		x;
 	int		y;
 	char	direction;
-	int				w;
-	int				s;
-	int				d;
-	int				a;
-	int				right;
-	int				left;
+	int		w;
+	int		s;
+	int		d;
+	int		a;
+	int		right;
+	int		left;
 }	t_corde;
 
 
