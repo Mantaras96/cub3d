@@ -32,7 +32,6 @@ void	mlx_init_data(t_all *all)
 	all->global.win = mlx_new_window(all->global.mlx, WIDTH, HEIGHT, "cub3d");
 	all->global.img = mlx_new_image(all->global.mlx, WIDTH, HEIGHT);
 	all->global.addr = mlx_get_data_addr(all->global.img,
-	&all->global.bits_per_pixel, &all->global.line_length,
-	&all->global.endian);
-	//ft_texture(all);
+			&all->global.bits_per_pixel, &all->global.line_length,
+			&all->global.endian);
 }

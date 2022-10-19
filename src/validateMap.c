@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-void	upgrade_values(t_corde *cordeplayer, t_global *global)
+void	upgrade_values(t_corde *cordeplayer, t_global *global, int j, int i)
 {
 	global->count_player++;
 	cordeplayer->x = j;
@@ -35,7 +35,7 @@ void	validate_one_player(t_global *global)
 			if (global->nums[i][j] == 'N' || global->nums[i][j] == 'S'
 				|| global->nums[i][j] == 'E' || global->nums[i][j] == 'W')
 			{
-				upgrade_values(&cordeplayer, global);
+				upgrade_values(&cordeplayer, global, j, i);
 			}
 			if (global->max_lenght < j)
 				global->max_lenght = j;
