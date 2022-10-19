@@ -63,12 +63,20 @@ int	count_lines(t_global *global)
 	return (1);
 }
 
+void	init_main(t_all *all, char **arr, int i)
+{
+	validate_textures(&all->global, i, arr);
+	validate_colors(&all->global, i, arr);
+	ft_directions(all);
+	init_data(all);
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	all;
 	int		i;
 	char	**arr;
-	
+
 	arr = NULL;
 	i = 0;
 	if (argc == 2)
@@ -78,16 +86,8 @@ int	main(int argc, char **argv)
 			show_error_msg(1, "Error numero de texturas\n");
 		if (!split_map(&all.global))
 			return (0);
-		validate_textures(&all.global, i, arr);
-		validate_colors(&all.global, i, arr);
-		ft_directions(&all);
-		init_data(&all);
-		all.global.mlx = mlx_init();
-		all.global.win = mlx_new_window(all.global.mlx, WIDTH, HEIGHT, "cub3d");
-		all.global.img = mlx_new_image(all.global.mlx, WIDTH, HEIGHT);
-		all.global.addr = mlx_get_data_addr(all.global.img,
-				&all.global.bits_per_pixel, &all.global.line_length,
-				&all.global.endian);
+		init_main(&all, arr, i);
+		mlx_init_data(&all);
 		ft_texture(&all);
 		mlx_hook(all.global.win, 02, (0L << 0), mover, &all);
 		mlx_hook(all.global.win, 03, (0L << 0), release, &all);
@@ -95,10 +95,6 @@ int	main(int argc, char **argv)
 		mlx_loop_hook(all.global.mlx, main_loop, &all);
 		mlx_loop(all.global.mlx);
 	}
-	else
-	{
-		show_error_msg(1, "Error numero de parametro incorrecto");
-		return (0);
-	}
+	show_error_msg(1, "Error numero de parametro incorrecto");
 	return (0);
 }
