@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:27:44 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 19:27:46 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:41:38 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ void	my_mlx_pixel_put(t_all *all, int x, int y, int color)
 
 void	init_data(t_all *all)
 {
-	// all->pos.pos_x = 12;
-	// all->pos.pos_y = 5;
-  	// all->pos.dir_y = 0;
-	// all->pos.dir_x = -1;
-	// all->pos.plane_x = 0;
-	// all->pos.plane_y = 0.66;
 	all->pos.move_speed = 0.04;
 	all->pos.rot_speed = 0.04;
 	all->pos.buffer = NULL;
