@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 22:34:14 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/09/21 19:45:41 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/19 19:32:09 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ void	*complete_map_img(t_global *global, int i, int j)
 		return (transform_img(global->mlx, "./assets/sprites/wall.xpm"));
 	else if (global->map[i][j] == '0')
 		return (transform_img(global->mlx, "./assets/sprites/water.xpm"));
-	// else if (global->map[i][j] == 'C')
-	// {
-	// 	global->collect++;
-	// 	return (transform_img(global->mlx, "./assets/sprites/collectable.xpm"));
-	// }
 	else if (global->map[i][j] == 'E')
 		return (transform_img(global->mlx, "./assets/sprites/escape.xpm"));
 	else if (global->map[i][j] == 'P')
@@ -66,7 +61,6 @@ void	show_map(t_global *global)
 	c.x = 0;
 	count = 0;
 	coord.y = 0;
-	//global->collect = 0;
 	while (global->map[c.x])
 	{
 		c.y = 0;
