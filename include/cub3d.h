@@ -210,7 +210,7 @@ int		ft_matrix_len(char **matrix);
 int 	malloc_maps(t_global *global);
 void 	validate_map(t_global *global);
 int 	validate_textures(t_global *global);
-int access_textures(const char *filename, t_global *global, int i);
+int	access_textures(char *filename, t_global *global, int i);
 int 	validate_colors(t_global *global);
 void	free_matrix(char ***matrix);
 void	set_mlx_windows_and_pistolon(t_all *all);

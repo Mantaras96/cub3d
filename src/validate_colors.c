@@ -31,14 +31,15 @@ int	save_num(t_global *global, char *nums, int i)
 	{
 		arr = ft_split(nums, ',');
 		global->rgbF = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
-		printf("%d\n", global->rgbF);
+		free_matrix(&arr);
 	}	
 	if (i == 1)
 	{
 		arr = ft_split(nums, ',');
 		global->rgbC = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
-		printf("%d\n", global->rgbC);
+		free_matrix(&arr);
 	}
+	free_matrix(&arr);
 	return (0);
 }
 
@@ -54,8 +55,12 @@ int	save_color(t_global *global)
 		arr = ft_split(global->colors[i], ' ');
 		arr2 = ft_split(arr[1], '\n');
 		save_num(global, arr2[0], i);
+		free_matrix(&arr);
+		free_matrix(&arr2);
 		i++;
 	}
+	free_matrix(&arr);
+	free_matrix(&arr2);
 	return (0);
 }
 

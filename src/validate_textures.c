@@ -69,7 +69,7 @@ void	ft_get_textures(t_all *all)
 	}
 }
 
-int	access_textures(const char *filename, t_global *global, int i)
+int	access_textures(char *filename, t_global *global, int i)
 {
 	int		fd;
 	char	**arr;
@@ -113,6 +113,7 @@ int	validate_textures(t_global *global)
 				show_error_msg(1, "Error ruta de las texturas\n");
 				break ;
 			}
+			free_matrix(&arr);
 		}
 		else
 		{
