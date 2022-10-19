@@ -92,12 +92,8 @@ int	check_nums(char *line_nums)
 	return (0);
 }
 
-int	validate_colors(t_global *global)
+int	validate_colors(t_global *global, int i, char **arr)
 {
-	int		i;
-	char	**arr;
-
-	i = 0;
 	while (global->colors[i])
 	{
 		arr = ft_split(global->colors[i], ' ');
