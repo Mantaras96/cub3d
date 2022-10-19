@@ -105,6 +105,7 @@ int release (int keycode, t_all *all)
 		all->corde.left = 0;
 	return (0);
 }
+
 int	mover(int keycode, t_all *all)
 {	//printf("%d\n", keycode);
 	if (keycode == 53)
