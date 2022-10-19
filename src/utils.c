@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/19 19:27:44 by amantara          #+#    #+#             */
+/*   Updated: 2022/10/19 19:27:46 by amantara         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-void			my_mlx_pixel_put(t_all *all, int x, int y, int color)
+void	my_mlx_pixel_put(t_all *all, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
-	dst = (char *)all->global.addr +
-	(y * all->global.line_length + x * (all->global.bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	dst = (char *)all->global.addr
+		+ (y * all->global.line_length + x * (all->global.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-void init_data(t_all *all)
+void	init_data(t_all *all)
 {
 	// all->pos.pos_x = 12;
 	// all->pos.pos_y = 5;
