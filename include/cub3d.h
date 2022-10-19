@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:24:42 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 20:25:39 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/19 20:26:12 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,8 +215,8 @@ int		close_event(void);
 void	*transform_img(void *mlx, char *image);
 int		split_map(t_global *global);
 int		ft_matrix_len(char **matrix);
-int 	malloc_maps(t_global *global);
-void 	validate_map(t_global *global);
+int		malloc_maps(t_global *global);
+void	validate_map(t_global *global);
 int		validate_textures(t_global *global, int i, char **arr);
 int		access_textures(char *filename, t_global *global, int i);
 int		validate_colors(t_global *global, int i, char **arr);
