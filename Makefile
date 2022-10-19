@@ -10,8 +10,11 @@ SRC	=	src/main.c \
 		src/validateMap.c \
 		src/validate_textures.c \
 		src/validate_colors.c \
-		src/init_ray.c\
-		src/key_move.c
+		src/raycasting.c\
+		src/raycasting2.c\
+		src/key_move.c\
+		src/utils.c\
+		src/key_move_vision.c
 
 NAME 	= 	cub3d
 

@@ -12,30 +12,6 @@
 
 #include "../include/cub3d.h"
 
-int	close_event(void)
-{
-	exit (0);
-	return (0);
-}
-
-void	set_mlx_windows_and_pistolon(t_all *all)
-{
-	
-	all->global.mlx = mlx_init();
-	all->global.win = mlx_new_window(all->global.mlx,
-			WIDTH, HEIGHT, "cub3d");
-			
-
-	// all->image.image = mlx_new_image(all->global.mlx, all->image.x, all->image.y);
-	// all->image.pointer = mlx_xpm_file_to_image(all->image.image, "assets/sprites/pistol.xpm", &all->image.x, &all->image.y);
-	// all->image.pixels  = mlx_get_data_addr(all->image.image, &all->image.bits_per_pixel, &all->image.line_size, &all->image.endian);
-	// mlx_put_image_to_window(all->global.mlx, all->global.win, all->image.pointer, 825, 870);
-
-	// all->image.image = mlx_new_image(all->global.mlx, all->image.x, all->image.y);
-	// all->image.pointer = mlx_xpm_file_to_image(all->image.image, "assets/sprites/crosshair.xpm", &all->image.x, &all->image.y);
-	// all->image.pixels  = mlx_get_data_addr(all->image.image, &all->image.bits_per_pixel, &all->image.line_size, &all->image.endian);
-	// mlx_put_image_to_window(all->global.mlx, all->global.win, all->image.pointer, 930, 513);
-}
 int count_file_lines(t_global *global, int i)
 {
 	while(global->map[i])
@@ -96,25 +72,16 @@ int	main(int argc, char **argv)
 		if(!split_map(&all.global))
 			return (0);
 		validate_textures(&all.global);
-		validate_colors(&all.global); //falta guardar los colores correctamente
-		
+		validate_colors(&all.global);
 		init_data(&all);
+
 		//validate_map(&global);
-
-		//set_mlx_windows_and_pistolon(&all);
 		all.global.mlx = mlx_init();
-		all.global.win = mlx_new_window(all.global.mlx,
-			WIDTH, HEIGHT, "cub3d");
+		all.global.win = mlx_new_window(all.global.mlx, WIDTH, HEIGHT, "cub3d");
+		all.global.img = mlx_new_image(all.global.mlx, WIDTH, HEIGHT);
+		all.global.addr = mlx_get_data_addr(all.global.img, &all.global.bits_per_pixel, &all.global.line_length, &all.global.endian);
 
-
-		all.global.img = mlx_new_image(all.global.mlx, WIDTH,
-		HEIGHT);
-		all.global.addr = mlx_get_data_addr(all.global.img,
-		&all.global.bits_per_pixel, &all.global.line_length, &all.global.endian);
 		ft_texture(&all);
-		all.corde.a = 0;
-		all.corde.left = 0;
-		all.corde.right = 0;
 		mlx_hook(all.global.win, 02, (0L << 0), mover, &all);
 		mlx_hook(all.global.win, 03, (0L << 0), release, &all);
 		mlx_hook(all.global.win, 17, 0, close_event, &all);

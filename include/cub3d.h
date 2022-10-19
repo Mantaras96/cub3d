@@ -221,5 +221,13 @@ void init_data(t_all *all);
 int key_move (t_all *all);
 void ft_texture(t_all *all);
 void ft_get_textures(t_all *all);
+void printing(t_all *all, int x, int y);
+void texturing(t_all *all);
+void			my_mlx_pixel_put(t_all *all, int x, int y, int color);
+void move_left_vision(t_all *all);
+void move_right_vision(t_all *all);
+int	ft_strcmp(const char *str1, const char *str2);
+
+
 
 #endif

@@ -1,19 +1,5 @@
 #include "../include/cub3d.h"
 
-int	ft_strcmp(const char *str1, const char *str2)
-{
-	if (!str1)
-		return (1);
-	while (*str1)
-	{
-		if (*str1 != *str2)
-			break ;
-		str1++;
-		str2++;
-	}
-	return (*(const unsigned char *) str1 - *(const unsigned char *) str2);
-}
-
 void ft_texture(t_all *all)
 {
     all->text_norte.tex_norte = mlx_xpm_file_to_image(all->global.mlx, all->global.path_textures[0], &all->text_norte.tex_width, &all->text_norte.tex_height);
@@ -22,32 +8,10 @@ void ft_texture(t_all *all)
     all->text_este.tex_este = mlx_xpm_file_to_image(all->global.mlx, all->global.path_textures[3], &all->text_este.tex_width, &all->text_este.tex_height);
 }
 
-void ft_get_textures2(t_all *all)
-{
-    if (all->pos.side == 1 && all->pos.step_y == 1)
-    {
-        printf("aleste\n");
-        all->pos.tex_width = all->text_este.tex_width;
-        all->pos.tex_height = all->text_este.tex_height;
-        all->pos.textura = all->text_este.tex_este;
-        all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura, &all->text_este.bits_per_pixel, &all->text_este.line_lenght, &all->text_este.endian);
-
-    }
-    if (all->pos.side == 1 && all->pos.step_y == -1)
-    {
-        printf("aloeste\n");
-        all->pos.tex_width = all->text_oeste.tex_width;
-        all->pos.tex_height = all->text_oeste.tex_height;
-        all->pos.textura = all->text_oeste.tex_oeste;
-        all->pos.buffer = (unsigned int *)mlx_get_data_addr(all->pos.textura, &all->text_oeste.bits_per_pixel, &all->text_oeste.line_lenght, &all->text_oeste.endian);
-    }
-}
-
 void ft_get_textures(t_all *all)
 {
     if (all->pos.side == 0 && all->pos.step_x == -1)
     {
-       //printf("alnorte\n");
         all->pos.tex_width = all->text_norte.tex_width;
         all->pos.tex_height = all->text_norte.tex_height;
         all->pos.textura = all->text_norte.tex_norte;
@@ -55,7 +19,6 @@ void ft_get_textures(t_all *all)
     }
     if (all->pos.side == 0 && all->pos.step_x == 1)
     {
-        //printf("alsur\n");
         all->pos.tex_width = all->text_sud.tex_width;
         all->pos.tex_height = all->text_sud.tex_height;
         all->pos.textura = all->text_sud.tex_sud;
@@ -63,7 +26,6 @@ void ft_get_textures(t_all *all)
     }
       if (all->pos.side == 1 && all->pos.step_y == 1)
     {
-        //printf("aleste\n");
         all->pos.tex_width = all->text_este.tex_width;
         all->pos.tex_height = all->text_este.tex_height;
         all->pos.textura = all->text_este.tex_este;
@@ -72,7 +34,6 @@ void ft_get_textures(t_all *all)
     }
     if (all->pos.side == 1 && all->pos.step_y == -1)
     {
-       //printf("aloeste\n");
         all->pos.tex_width = all->text_oeste.tex_width;
         all->pos.tex_height = all->text_oeste.tex_height;
         all->pos.textura = all->text_oeste.tex_oeste;
