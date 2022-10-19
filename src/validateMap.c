@@ -39,7 +39,7 @@ void	validate_one_player(t_global *global)
 		global->character = cordeplayer;
 		i++;
 	}
-	if (global->count_player > 1 || global->count_player < 1)
+	if (global->count_player > 1 || global->count_player == 0)
 		printf("\nError mas de 1 o no encontrado player");
 }
 

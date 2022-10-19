@@ -73,9 +73,10 @@ int	main(int argc, char **argv)
 			return (0);
 		validate_textures(&all.global);
 		validate_colors(&all.global);
+		ft_directions(&all);
 		init_data(&all);
 
-		//validate_map(&global);
+		//validate_map(&all.global);
 		all.global.mlx = mlx_init();
 		all.global.win = mlx_new_window(all.global.mlx, WIDTH, HEIGHT, "cub3d");
 		all.global.img = mlx_new_image(all.global.mlx, WIDTH, HEIGHT);
