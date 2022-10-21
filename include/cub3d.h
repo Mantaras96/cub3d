@@ -5,8 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 20:24:42 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 20:26:12 by amantara         ###   ########.fr       */
+/*   Created: 2022/10/19 20:24:42 by amantara          #+#    #+#             *//*   Updated: 2022/10/21 15:45:41 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +216,8 @@ int		split_map(t_global *global);
 int		ft_matrix_len(char **matrix);
 int		malloc_maps(t_global *global);
 void	validate_map(t_global *global);
+void	validate_one_player(t_global *global);
+void	validate_rows(t_global *global);
 int		validate_textures(t_global *global, int i, char **arr);
 int		access_textures(char *filename, t_global *global, int i);
 int		validate_colors(t_global *global, int i, char **arr);

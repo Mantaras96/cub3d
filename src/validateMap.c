@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:50:37 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/19 20:30:14 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:15:22 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	validate_one_player(t_global *global)
 		i++;
 	}
 	if (global->count_player > 1 || global->count_player == 0)
-		printf("\nError mas de 1 o no encontrado player");
+		show_error_msg(5, "Error en el numero de jugadores");
 }
 
 void	validate_rows(t_global *global)
@@ -60,10 +60,10 @@ void	validate_rows(t_global *global)
 		while (global->nums[i][j] == 32 && global->nums[i][j])
 			j++;
 		if (global->nums[i][j] != '1')
-			printf("Error 1\n");
+			show_error_msg(6, "Error en paredes");
 		if (i < (ft_matrix_len(global->nums) - 1)
 			&& global->nums[i][ft_strlen(global->nums[i]) - 2] != '1')
-			printf("Error 2\n");
+			show_error_msg(6, "Error en paredes");
 		i++;
 	}
 }

@@ -8,6 +8,7 @@ SRC	=	src/main.c \
 		gnl/get_next_line.c \
 		src/split_map.c \
 		src/validateMap.c \
+		src/validateMap2.c \
 		src/validate_textures.c \
 		src/validate_colors.c \
 		src/raycasting.c\

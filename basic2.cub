@@ -1,0 +1,12 @@
+NO ./assets/sprites/wall1.xpm
+SO ./assets/sprites/wall2.xpm
+WE ./assets/sprites/wall3.xpm
+EA ./assets/sprites/wall4.xpm
+
+F 255,146,146
+C 138,242,221
+
+
+111111
+111N111
+111111

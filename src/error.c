@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:23:18 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/10/19 20:09:32 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:10:43 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	show_error_msg(int option, char *str)
 {
-	str = NULL;
 	if (option == 1)
 		printf("Error en las texturas");
 	else if (option == 2)
@@ -23,6 +22,10 @@ void	show_error_msg(int option, char *str)
 		printf("Error en el mapa");
 	else if (option == 4)
 		printf("Error en abrir juego");
+	else if (option == 5)
+		printf("Error en el numero de jugadores");
+	else if (option == 6)
+		printf("Error en paredes: %s", str);
 	exit(1);
 }
 
