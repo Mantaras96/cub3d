@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:50:24 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/26 18:58:08 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:59:16 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,11 @@ int	is_space_tab(char c)
 
 void	check_directions(int i, int j, t_global *global)
 {
-int h;
-h = 0;
-while (global->nums[h])
-{
-	printf("MAPA: %s", global->nums[h]);
-	h++;
-}
-	
-// printf("Valor inicial i:%d j:%d\n", i, j);
-
-// printf("Valor i: %d, MAPA: %c\n ",i, global->nums[i + 1][j]);
-// printf("Valor i: %d, MAPA: %c\n ",i, global->nums[i - 1][j]);
-
-// printf("Valor j: %d, MAPA: %c\n ",j, global->nums[i][j - 1]);
-// printf("Valor j: %d, MAPA: %c\n ",j, global->nums[i][j + 1]);
-
-	
 	if (is_space_tab(global->nums[i - 1][j])
 		|| is_space_tab(global->nums[i + 1][j])
 		|| is_space_tab(global->nums[i][j - 1])
 		|| is_space_tab(global->nums[i][j + 1]))
-		printf("\nError posicion[%d][%d]\n\n", i, j);
+		show_error_msg(6, "mapa no valido.");
 }
 
 void	validate_all_different_wall(t_global *global)
@@ -140,8 +123,6 @@ void parserMap(t_global *global){
 		i++;
 	}
 	i = 0;
-
-
 	free_matrix(&global->nums);
 	global->nums = newMap;
 }
@@ -154,12 +135,7 @@ void	validate_map(t_global *global)
 	global->count_player = 0;
 	validate_one_player(global);
 	parserMap(global);
-	while (global->nums[i])
-	{
-		printf("MAPA Nuevo%d: %s",i, global->nums[i]);
-		i++;
-	}
-	// validate_rows(global);
-	// validate_first_last_row(global);
+	validate_first_last_row(global);
+	//validate_rows(global);
 	validate_all_different_wall(global);
 }

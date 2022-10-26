@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:50:37 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/26 19:18:57 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:59:27 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	validate_one_player(t_global *global)
 void	validate_rows(t_global *global)
 {
 	int	i;
-	int	j;
+	int	j; 
 
 	i = 1;
 	while (global->nums[i])
