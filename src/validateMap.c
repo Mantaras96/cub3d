@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:50:37 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/21 16:15:22 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:18:57 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	upgrade_values(t_corde *cordeplayer, t_global *global, int j, int i)
 {
 	global->count_player++;
-	cordeplayer->x = j;
-	cordeplayer->y = i;
+	cordeplayer->x = i;
+	cordeplayer->y = j;
 	cordeplayer->direction = global->nums[i][j];
 }
 
@@ -35,6 +35,8 @@ void	validate_one_player(t_global *global)
 			if (global->nums[i][j] == 'N' || global->nums[i][j] == 'S'
 				|| global->nums[i][j] == 'E' || global->nums[i][j] == 'W')
 			{
+			
+				
 				upgrade_values(&cordeplayer, global, j, i);
 			}
 			if (global->max_lenght < j)

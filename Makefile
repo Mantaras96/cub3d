@@ -34,20 +34,24 @@ OPENGL = -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+compile_libft :
+	@if [ ! -d "libft" ]; then \
+		git clone https://github.com/Mantaras96/libft.git; \
+	fi
+	@make -C libft
+
+$(NAME): compile_libft $(OBJ)
 		make -C mlx
-		make -C libft
-		$(CC) $(MLXLINK) $(MINILIBX) $(LIBFT) $(OPENGL) $^ -o $(NAME)
+		$(CC) $(LIBFT) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(OBJ) -o $(NAME)
+		rm -rf ./libft
 
 clean:
 		make clean -C mlx
-		make clean -C libft
 		/bin/rm -rf src/*.o
 
 fclean: clean 
-		make fclean -C libft
 		/bin/rm -f $(NAME)
 
 re: fclean all
-.PHONY: all clean fclean re
+.PHONY: all re compile_libft clean fclean 
 
