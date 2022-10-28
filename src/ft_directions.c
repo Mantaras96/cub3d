@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:08:35 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/26 20:52:50 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:31:41 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_directions_s(t_all *all)
 
 void	ft_directions_w(t_all *all)
 {
-	all->pos.pos_x = all->global.character.x+ 0.05;
-	all->pos.pos_y = all->global.character.y+ 0.05;
+	all->pos.pos_x = all->global.character.x + 0.05;
+	all->pos.pos_y = all->global.character.y + 0.05;
 	all->pos.dir_y = 1;
 	all->pos.dir_x = 0;
 	all->pos.plane_x = 0.66;
@@ -44,8 +44,8 @@ void	ft_directions_w(t_all *all)
 
 void	ft_directions_e(t_all *all)
 {
-	all->pos.pos_x = all->global.character.x+ 0.05;
-	all->pos.pos_y =all->global.character.y+ 0.05;
+	all->pos.pos_x = all->global.character.x + 0.05;
+	all->pos.pos_y = all->global.character.y + 0.05;
 	all->pos.dir_y = -1;
 	all->pos.dir_x = 0;
 	all->pos.plane_x = -0.66;

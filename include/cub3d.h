@@ -76,7 +76,7 @@ typedef struct s_global
 	int			lines_textures;
 	int			lines_colors;
 	int			lines_maps;
-	int			max_lenght;
+	int			max_length;
 	char		**path_textures;
 	char		**path_colors;
 	char		**num2;
@@ -238,5 +238,8 @@ void	move_right_vision(t_all *all);
 int		ft_strcmp(const char *str1, const char *str2);
 void	ft_directions(t_all *all);
 void	mlx_init_data(t_all *all);
+void	validate_all_different_wall(t_global *global);
+void	validate_first_last_row(t_global *global);
+
 
 #endif

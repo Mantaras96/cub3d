@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:22:17 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/10/26 20:46:22 by amantara         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:31:08 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	init_main(t_all *all, char **arr, int i)
 	validate_map(&all->global);
 	init_data(all);
 	ft_directions(all);
-	
 }
 
 int	main(int argc, char **argv)
