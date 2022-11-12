@@ -241,5 +241,4 @@ void	mlx_init_data(t_all *all);
 void	validate_all_different_wall(t_global *global);
 void	validate_first_last_row(t_global *global);
 
-
 #endif
