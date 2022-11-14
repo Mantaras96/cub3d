@@ -74,43 +74,38 @@ void	ft_get_textures(t_all *all)
 	ft_get_text2(all);
 }
 
-int	access_textures(char *filename, t_global *global, int i)
+int	access_textures(char *filename)
 {
 	int		fd;
-	char	**arr;
+	int		size;
 
-	arr = ft_split(filename, '\n');
-	fd = open(arr[0], R_OK);
+	size = ft_strlen(filename);
+	filename[size -1] = '\0';
+	fd = open(filename, R_OK);
 	if (fd == -1)
 	{
 		return (1);
 		close(fd);
-		free_matrix(&arr);
-	}
-	while (i < global->lines_textures)
-	{
-		global->path_textures[i] = ft_strdup(arr[0]);
-		i++;
 	}
 	close(fd);
-	free_matrix(&arr);
 	return (0);
 }
 
 int	validate_textures(t_global *global, int i, char **arr)
 {
 	while (global->textures[i])
-	{
+	{	
 		arr = ft_split(global->textures[i], ' ');
 		if (!ft_strcmp(arr[0], "NO") || !ft_strcmp(arr[0], "SO")
 			|| !ft_strcmp(arr[0], "WE") || !ft_strcmp(arr[0], "EA"))
 		{
-			if (access_textures(arr[1], global, i))
+			if (access_textures(arr[1]))
 			{
 				free_matrix(&arr);
 				show_error_msg(1, "Error ruta de las texturas\n");
 				break ;
 			}
+			global->path_textures[i] = ft_strdup(arr[1]);
 			free_matrix(&arr);
 		}
 		else

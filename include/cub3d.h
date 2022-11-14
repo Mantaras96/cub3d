@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 20:24:42 by amantara          #+#    #+#             *//*   Updated: 2022/10/21 15:45:41 by amantara         ###   ########.fr       */
+/*   Created: 2022/11/14 12:07:35 by tmerida-          #+#    #+#             */
+/*   Updated: 2022/11/14 12:07:37 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +220,7 @@ void	validate_map(t_global *global);
 void	validate_one_player(t_global *global);
 void	validate_rows(t_global *global);
 int		validate_textures(t_global *global, int i, char **arr);
-int		access_textures(char *filename, t_global *global, int i);
+int		access_textures(char *filename);
 int		validate_colors(t_global *global, int i, char **arr);
 void	free_matrix(char ***matrix);
 void	set_mlx_windows_and_pistolon(t_all *all);
