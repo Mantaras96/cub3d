@@ -12,10 +12,15 @@
 
 #include "../include/cub3d.h"
 
-char	**validate_and_read_map(char *filename, t_all *all)
+int		validate_and_read_map(char *filename, t_all *all)
 {
 	ft_validate_name(filename);
 	read_map(filename, &all->global);
+	if (!all->global.map[0])
+	{
+		free_matrix(&all->global.map);
+		return(1);
+	}
 	return (0);
 }
 
@@ -37,7 +42,6 @@ char	**read_map(char *filename, t_global *global)
 		if (line != NULL)
 			global->map = arr_push(global->map, line);
 		else{
-			write(1, "hola", 4);
 			break ;
 		}
 	}

@@ -82,8 +82,8 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc == 2)
 	{
-		
-		validate_and_read_map(argv[1], &all);
+		if(validate_and_read_map(argv[1], &all))
+			show_error_msg(4, "FIchero vacio");
 		if (!count_lines(&all.global))
 			show_error_msg(1, "Error numero de texturas\n");
 		if (!split_map(&all.global))
