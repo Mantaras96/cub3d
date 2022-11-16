@@ -54,9 +54,7 @@ void	ft_directions_e(t_all *all)
 
 void	ft_directions(t_all *all)
 {
-	printf("%d\n", all->global.character.x);
-	printf("%d\n", all->global.character.y);
-	printf("%c\n", all->global.character.direction);
+	
 	if (all->global.character.direction == 'N')
 		ft_directions_n(all);
 	if (all->global.character.direction == 'S')
