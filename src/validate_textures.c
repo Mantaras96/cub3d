@@ -26,12 +26,12 @@ void	ft_texture(t_all *all)
 	all->text_este.tex_este = mlx_xpm_file_to_image(all->global.mlx,
 			all->global.path_textures[3], &all->text_este.tex_width,
 			&all->text_este.tex_height);
-	
-	if (!all->text_este.tex_este || !all->text_norte.tex_norte || !all->text_oeste.tex_oeste || !all->text_sud.tex_sud)
+	if (!all->text_este.tex_este || !all->text_norte.tex_norte
+		|| !all->text_oeste.tex_oeste || !all->text_sud.tex_sud)
 	{
 		show_error_msg(1, "Textura Vacia\n");
-	 	mlx_clear_window(all->global.mlx, all->global.win);
-	 	mlx_destroy_window(all->global.mlx, all->global.win);
+		mlx_clear_window(all->global.mlx, all->global.win);
+		mlx_destroy_window(all->global.mlx, all->global.win);
 		exit(0);
 	}
 }

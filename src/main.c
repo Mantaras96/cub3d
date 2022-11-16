@@ -82,15 +82,13 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc == 2)
 	{
-		if(validate_and_read_map(argv[1], &all))
+		if (validate_and_read_map(argv[1], &all))
 			show_error_msg(4, "FIchero vacio");
 		if (!count_lines(&all.global))
 			show_error_msg(1, "Error numero de texturas\n");
 		if (!split_map(&all.global))
 			return (0);
-		
 		init_main(&all, arr, i);
-		
 		mlx_init_data(&all);
 		ft_texture(&all);
 		mlx_hook(all.global.win, 02, (0L << 0), mover, &all);

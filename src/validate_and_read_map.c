@@ -12,14 +12,14 @@
 
 #include "../include/cub3d.h"
 
-int		validate_and_read_map(char *filename, t_all *all)
+int	validate_and_read_map(char *filename, t_all *all)
 {
 	ft_validate_name(filename);
 	read_map(filename, &all->global);
 	if (!all->global.map[0])
 	{
 		free_matrix(&all->global.map);
-		return(1);
+		return (1);
 	}
 	return (0);
 }
@@ -32,7 +32,6 @@ char	**read_map(char *filename, t_global *global)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		show_error_msg(1, "Error\n La ruta del mapa no es correcta");
-	
 	global->map = ft_calloc(sizeof(char *), 1);
 	if (global->map == NULL)
 		show_error_msg(1, "Error\n de memoria.\n");
@@ -41,9 +40,8 @@ char	**read_map(char *filename, t_global *global)
 		line = get_next_line(fd);
 		if (line != NULL)
 			global->map = arr_push(global->map, line);
-		else{
+		else
 			break ;
-		}
 	}
 	close(fd);
 	return (global->map);

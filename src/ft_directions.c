@@ -54,7 +54,6 @@ void	ft_directions_w(t_all *all)
 
 void	ft_directions(t_all *all)
 {
-	
 	if (all->global.character.direction == 'N')
 		ft_directions_n(all);
 	if (all->global.character.direction == 'S')

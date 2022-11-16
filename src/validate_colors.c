@@ -97,7 +97,6 @@ int	validate_colors(t_global *global, int i, char **arr)
 	while (global->colors[i])
 	{
 		arr = ft_split(global->colors[i], ' ');
-		printf("%s\n", arr[2]);
 		if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
 		{
 			if (check_nums(arr[1]))
