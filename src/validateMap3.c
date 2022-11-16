@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:50:24 by amantara          #+#    #+#             */
-/*   Updated: 2022/10/28 16:58:27 by amantara         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:45:35 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,36 @@ void	parser_map(t_global *global)
 	global->nums = new_map;
 }
 
+
+void	validateLetters(t_global *global)
+{
+	int i;
+	int j;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (global->nums[i])
+	{
+		j = 0;
+		while (global->nums[i][j])
+		{
+			if (global->nums[i][j] != 'N' && global->nums[i][j] != 'S' && global->nums[i][j] != 'E' && global->nums[i][j] != 'W' && global->nums[i][j] != '1' && global->nums[i][j] != '0' && global->nums[i][j] != '\t' && global->nums[i][j] != '\n' && global->nums[i][j] != ' '){
+				show_error_msg(6, "caracter no valido.");	 
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	validate_map(t_global *global)
 {
 	int	i;
 
 	i = 0;
 	global->count_player = 0;
+	validateLetters(global);
 	validate_one_player(global);
 	parser_map(global);
 	validate_first_last_row(global);
