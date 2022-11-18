@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:24:41 by amantara          #+#    #+#             */
-/*   Updated: 2022/11/18 16:33:10 by amantara         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:35:43 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,40 +139,64 @@ void	validate_format_colors(t_global *global, char **arr)
 		printf("Numero basura");
 }
 
+void save_n(int i, int j, t_global *global)
+{
+	i = 0;
+	j = 0;
+	while(global->colors[i][j])
+    {
+       write(1, &global->colors[i][j], 1);
+	   i++;
+	   j++;
+    }
+}
+
 int	validate_colors(t_global *global, int i, char **arr)
 {
-	(void) i;
-	// arr = ft_split_spaces(global->colors[0]);
-	// arr = ft_split(arr[1], ',');
-	// printf("Arr lenght:%d\n", ft_matrix_len(arr));
-	// int j = 0;
-	// while (arr[j]){
-	// 	printf("Array:%s\n", arr[j]);
-	// 	j++;
+	validate_format_colors(global, arr); 
+	// while (global->colors[i])
+	// {
+	// 	arr = ft_split(global->colors[i], ' ');
+	// 	if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
+	// 	{
+	// 		if (check_nums(arr[1]))
+	// 		{
+	// 			free_matrix(&arr);
+	// 			show_error_msg(1, "Error colores");
+	// 			break ;
+	// 		}
+	// 	}
+	// 	else
+	// 	{
+	// 		free_matrix(&arr);
+	// 		show_error_msg(2, "Error colores");
+	// 		break ;
+	// 	}
+	// 	free_matrix(&arr);
+	// 	i++;
 	// }
-	validate_format_colors(global, arr);                
-	
-	while (global->colors[i])
+	// save_color(global);
+	// return (0);
+	arr = NULL;
+	char letter;
+	i = 0;
+	int j= 0;
+	while(global->colors[i])
 	{
-		arr = ft_split(global->colors[i], ' ');
-		if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
+		while(global->colors[i][j])
 		{
-			if (check_nums(arr[1]) || validate_have_char(arr[1], 9) || validate_have_char(arr[1], 32))
+			if(global->colors[i][j] == ' ')
+				j++;
+			else
 			{
-				free_matrix(&arr);
-				show_error_msg(1, "Error colores");
+				letter = global->colors[i][j];
+           		 write(1, &global->colors[i][j], 1);
+				save_n(i, j + 1, global);
 				break ;
 			}
+			
 		}
-		else
-		{
-			free_matrix(&arr);
-			show_error_msg(2, "Error colores");
-			break ;
-		}
-		free_matrix(&arr);
 		i++;
 	}
-	save_color(global);
 	return (0);
 }

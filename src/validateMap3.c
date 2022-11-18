@@ -57,12 +57,11 @@ void	parser_map(t_global *global)
 	global->nums = new_map;
 }
 
-
-void	validateLetters(t_global *global)
+void	validate_letters(t_global *global)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -71,8 +70,13 @@ void	validateLetters(t_global *global)
 		j = 0;
 		while (global->nums[i][j])
 		{
-			if (global->nums[i][j] != 'N' && global->nums[i][j] != 'S' && global->nums[i][j] != 'E' && global->nums[i][j] != 'W' && global->nums[i][j] != '1' && global->nums[i][j] != '0' && global->nums[i][j] != '\t' && global->nums[i][j] != '\n' && global->nums[i][j] != ' '){
-				show_error_msg(6, "caracter no valido.");	 
+			if (global->nums[i][j] != 'N' && global->nums[i][j] != 'S'
+			&& global->nums[i][j] != 'E' && global->nums[i][j] != 'W'
+			&& global->nums[i][j] != '1' && global->nums[i][j] != '0'
+			&& global->nums[i][j] != '\t' && global->nums[i][j] != '\n'
+			&& global->nums[i][j] != ' ')
+			{
+				show_error_msg(6, "caracter no valido.");
 			}
 			j++;
 		}
@@ -86,7 +90,7 @@ void	validate_map(t_global *global)
 
 	i = 0;
 	global->count_player = 0;
-	validateLetters(global);
+	validate_letters(global);
 	validate_one_player(global);
 	parser_map(global);
 	validate_first_last_row(global);

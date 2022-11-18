@@ -6,6 +6,8 @@
         "cmath": "c",
         "complex": "c",
         "algorithm": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "ostream": "c",
+        "sstream": "c"
     }
 }
