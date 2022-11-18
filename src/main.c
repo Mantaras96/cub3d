@@ -65,11 +65,11 @@ int	count_lines(t_global *global)
 
 void	init_main(t_all *all, char **arr, int i)
 {
-	validate_textures(&all->global, i, arr);
+//	validate_textures(&all->global, i, arr);
 	validate_colors(&all->global, i, arr);
-	validate_map(&all->global);
-	init_data(all);
-	ft_directions(all);
+	// validate_map(&all->global);
+	// init_data(all);
+	// ft_directions(all);
 }
 
 int	main(int argc, char **argv)
@@ -89,13 +89,13 @@ int	main(int argc, char **argv)
 		if (!split_map(&all.global))
 			return (0);
 		init_main(&all, arr, i);
-		mlx_init_data(&all);
-		ft_texture(&all);
-		mlx_hook(all.global.win, 02, (0L << 0), mover, &all);
-		mlx_hook(all.global.win, 03, (0L << 0), release, &all);
-		mlx_hook(all.global.win, 17, 0, close_event, &all);
-		mlx_loop_hook(all.global.mlx, main_loop, &all);
-		mlx_loop(all.global.mlx);
+		// mlx_init_data(&all);
+		// ft_texture(&all);
+		// mlx_hook(all.global.win, 02, (0L << 0), mover, &all);
+		// mlx_hook(all.global.win, 03, (0L << 0), release, &all);
+		// mlx_hook(all.global.win, 17, 0, close_event, &all);
+		// mlx_loop_hook(all.global.mlx, main_loop, &all);
+		// mlx_loop(all.global.mlx);
 	}
 	show_error_msg(1, "Error numero de parametro incorrecto");
 	return (0);
