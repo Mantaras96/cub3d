@@ -64,19 +64,7 @@ int	save_color(t_global *global)
 	return (0);
 }
 
-int validate_have_char(char *str, char c)
-{
-	int i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	check_nums(char *line_nums)
 {
@@ -106,100 +94,69 @@ int	check_nums(char *line_nums)
 	return (0);
 }
 
-int validate_coumas(t_global *global, char **arr){
-	int i;
+int check_spaces(int i, t_global *global)
+{
 	int j;
-	
-	(void)arr;
-	j = 0;
-	i = 0;
-	while (global->colors[0][j])
+	while(global->colors[i])
 	{
-		if (global->colors[0][j] == ',')
-			i++;
-		j++;	
-	};
-	j = 0;
-	while (global->colors[1][j])
-	{
-		if (global->colors[1][j] == ',')
-			i++;
-		j++;	
-	};
-	return (i);
-}
-
-void	validate_format_colors(t_global *global, char **arr)
-{
-	write(1, "aa", 2);
-	if (validate_coumas(global, arr) != 4)
-		ft_putstr_fd("numero basura", 1);
-	arr = ft_split_spaces(global->colors[0]);
-	if (ft_matrix_len(arr) != 2)
-		ft_putstr_fd("numero basura", 1);
-	arr = ft_split(arr[1], ',');
-	if (ft_matrix_len(arr) != 3)
-		ft_putstr_fd("numero basura", 1);
-}
-
-void save_n(int i, int j, t_global *global)
-{
-	i = 0;
-	j = 0;
-	while(global->colors[i][j])
-    {
-       write(1, &global->colors[i][j], 1);
-	   i++;
-	   j++;
-    }
+		j = 0;
+		while(global->colors[i][j])
+		{
+			if(global->colors[i][j] == 'F' || global->colors[i][j] == 'C')
+			{
+				j++;
+				while(global->colors[i][j])
+				{
+					if(global->colors[i][j] == ' ')
+						j++;
+					if (global->colors[i][j] != ' ')
+					{
+						while(global->colors[i][j])
+						{
+							if(global->colors[i][j] == ' ')
+								return(1);
+							j++;
+						}
+					}
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	validate_colors(t_global *global, int i, char **arr)
 {
-	validate_format_colors(global, arr); 
-	// while (global->colors[i])
-	// {
-	// 	arr = ft_split(global->colors[i], ' ');
-	// 	if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
-	// 	{
-	// 		if (check_nums(arr[1]))
-	// 		{
-	// 			free_matrix(&arr);
-	// 			show_error_msg(1, "Error colores");
-	// 			break ;
-	// 		}
-	// 	}
-	// 	else
-	// 	{
-	// 		free_matrix(&arr);
-	// 		show_error_msg(2, "Error colores");
-	// 		break ;
-	// 	}
-	// 	free_matrix(&arr);
-	// 	i++;
-	// }
-	// save_color(global);
-	// return (0);
-	arr = NULL;
-	char letter;
-	i = 0;
-	int j= 0;
-	while(global->colors[i])
+	if(check_spaces(i, global))
 	{
-		while(global->colors[i][j])
+		show_error_msg(2, "Textura Vacia\n");
+		mlx_clear_window(global->mlx, global->win);
+		mlx_destroy_window(global->mlx, global->win);
+		exit(0);
+	}
+	while (global->colors[i])
+	{
+		arr = ft_split(global->colors[i], ' ');
+		if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
 		{
-			if(global->colors[i][j] == ' ')
-				j++;
-			else
+			if (check_nums(arr[1]))
 			{
-				letter = global->colors[i][j];
-           		 write(1, &global->colors[i][j], 1);
-				save_n(i, j + 1, global);
+				free_matrix(&arr);
+				show_error_msg(2, "Error colores");
 				break ;
 			}
-			
 		}
+		else
+		{
+			free_matrix(&arr);
+			show_error_msg(2, "Error colores");
+			break ;
+		}
+		free_matrix(&arr);
 		i++;
 	}
+	save_color(global);
 	return (0);
 }
