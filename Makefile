@@ -18,7 +18,7 @@ SRC	=	src/main.c \
 		src/utils.c\
 		src/key_move_vision.c\
 		src/ft_directions.c\
-		src/split_space.c \
+		src/utils2.c
 
 NAME 	= 	cub3d
 

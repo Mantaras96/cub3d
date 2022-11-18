@@ -3,7 +3,7 @@ SO ./assets/sprites/wall2.xpm
 WE ./assets/sprites/wall3.xpm
 EA ./assets/sprites/wall4.xpm
 
-F           255,146,146
+F 255,146,146
 C 138,242,221
 
 
