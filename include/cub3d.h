@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmerida- <tmerida-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:07:35 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/11/14 12:07:37 by tmerida-         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:50:52 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_global
 	int			rgb_f;
 	int			rgb_c;
 	int			color;
+	char		**alb;	
 }	t_global;
 
 typedef struct s_pos
@@ -241,5 +242,6 @@ void	ft_directions(t_all *all);
 void	mlx_init_data(t_all *all);
 void	validate_all_different_wall(t_global *global);
 void	validate_first_last_row(t_global *global);
+char	**ft_split_spaces(char *str);
 
 #endif
