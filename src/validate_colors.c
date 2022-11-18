@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:24:41 by amantara          #+#    #+#             */
-/*   Updated: 2022/11/18 17:35:43 by amantara         ###   ########.fr       */
+/*   Updated: 2022/11/18 17:48:52 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int validate_coumas(t_global *global, char **arr){
 	int i;
 	int j;
 	
+	(void)arr;
 	j = 0;
 	i = 0;
 	while (global->colors[0][j])
@@ -121,22 +122,24 @@ int validate_coumas(t_global *global, char **arr){
 	j = 0;
 	while (global->colors[1][j])
 	{
-		if (global->colors[0][j] == ',')
+		if (global->colors[1][j] == ',')
 			i++;
 		j++;	
 	};
+	return (i);
 }
 
 void	validate_format_colors(t_global *global, char **arr)
 {
-	if (validate_coumas(global, arr) != 3)
-		printf("Numero basura");
+	write(1, "aa", 2);
+	if (validate_coumas(global, arr) != 4)
+		ft_putstr_fd("numero basura", 1);
 	arr = ft_split_spaces(global->colors[0]);
 	if (ft_matrix_len(arr) != 2)
-		printf("Numero basura");
+		ft_putstr_fd("numero basura", 1);
 	arr = ft_split(arr[1], ',');
 	if (ft_matrix_len(arr) != 3)
-		printf("Numero basura");
+		ft_putstr_fd("numero basura", 1);
 }
 
 void save_n(int i, int j, t_global *global)
