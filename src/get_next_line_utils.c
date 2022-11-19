@@ -6,11 +6,11 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 21:10:30 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/04/05 19:40:36 by amantara         ###   ########.fr       */
+/*   Updated: 2022/11/19 11:27:21 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/cub3d.h"
 
 char	*ft_strchr2(char *s, int c)
 {

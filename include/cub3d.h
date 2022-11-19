@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:07:35 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/11/16 19:50:52 by amantara         ###   ########.fr       */
+/*   Updated: 2022/11/19 11:26:15 by amantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "../libft/libft.h"
-# include "../gnl/get_next_line.h"
+# include "./libft.h"
+# include "./get_next_line.h"
 # include "../mlx/mlx.h"
 # include <math.h>
 
