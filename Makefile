@@ -16,6 +16,7 @@ SRCS =	src/main.c \
 		src/raycasting2.c\
 		src/key_move.c\
 		src/utils.c\
+		src/utils2.c \
 		src/key_move_vision.c\
 		src/ft_directions.c\
 		src/split_space.c \
