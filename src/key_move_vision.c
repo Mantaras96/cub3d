@@ -45,3 +45,22 @@ void	move_left_vision(t_all *all)
 	all->pos.plane_y = old_plane_x * sin(all->pos.rot_speed)
 		+ all->pos.plane_y * cos(all->pos.rot_speed);
 }
+
+void	check_col(t_all *all, int i, int j)
+{
+	while (all->global.colors[i])
+	{
+		j = 0;
+		while (all->global.colors[i][j])
+		{
+			if (all->global.colors[i][j] == 'C')
+				all->global.count_c++;
+			if (all->global.colors[i][j] == 'F')
+				all->global.count_f++;
+			j++;
+		}
+		i++;
+	}
+	if (all->global.count_f > 1 || all->global.count_c > 1)
+		show_error_msg(3, "Err");
+}

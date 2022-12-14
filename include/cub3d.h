@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 12:07:35 by tmerida-          #+#    #+#             */
-/*   Updated: 2022/11/19 11:26:15 by amantara         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:49:40 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ typedef struct s_global
 	int			rgb_f;
 	int			rgb_c;
 	int			color;
+	int			k;
+	int			t;
+	int			count_n;
+	int			count_s;
+	int			count_w;
+	int			count_e;
+	int			count_f;
+	int			count_c;
 	char		**alb;	
 }	t_global;
 
@@ -244,5 +252,8 @@ void	validate_all_different_wall(t_global *global);
 void	validate_first_last_row(t_global *global);
 char	**ft_split_spaces(char *str);
 void	check_color(int i, t_global *global);
+int		check_commas(char *arr);
+void	check_lett(t_all *all, int i, int j);
+void	check_col(t_all *all, int i, int j);
 
 #endif

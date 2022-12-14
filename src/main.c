@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:22:17 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/10/28 16:31:08 by amantara         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:21:52 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,42 @@ int	count_lines(t_global *global)
 	int	i;
 
 	i = 0;
-	global->lines_textures = count_file_lines(global, i);
-	global->empty_line = count_empty_lines(global, global->lines_textures, 0);
-	i = count_file_lines(global, global->empty_line + global->lines_textures);
-	global->lines_colors = i - global->empty_line - global->lines_textures;
-	global->empty_line_2 = count_empty_lines(global, i, 0);
-	i = count_file_lines(global, global->empty_line_2 + i);
-	global->lines_maps = i - (global->lines_textures
-			+ global->lines_colors + global->empty_line + global->empty_line_2);
-	if (global->lines_textures < 4 || global->lines_textures > 4)
-		return (0);
-	if (global->lines_colors < 2 || global->lines_colors > 2)
-		return (0);
+	while (global->map[i])
+	{
+		if (global->map[i][0] == '1')
+		{
+			global->empty_line = i;
+			break ;
+		}
+		i++;
+	}
+	i = global->empty_line;
+	while (global->map[i])
+	{
+		i++;
+	}
+	global->empty_line_2 = i;
+	global->t = 0;
+	global->k = 0;
 	return (1);
 }
 
 void	init_main(t_all *all, char **arr, int i)
 {
+	all->global.count_n = 0;
+	all->global.count_s = 0;
+	all->global.count_w = 0;
+	all->global.count_e = 0;
+	all->global.count_c = 0;
+	all->global.count_f = 0;
+	check_lett(all, 0, 0);
+	if (all->global.t != 4)
+	{
+		show_error_msg(1, "Textura Vacia\n");
+		mlx_clear_window(all->global.mlx, all->global.win);
+		mlx_destroy_window(all->global.mlx, all->global.win);
+		exit(0);
+	}	
 	validate_textures(&all->global, i, arr);
 	validate_colors(&all->global, i, arr);
 	validate_map(&all->global);

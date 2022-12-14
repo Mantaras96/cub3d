@@ -6,26 +6,35 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 20:05:15 by albertmanta       #+#    #+#             */
-/*   Updated: 2022/10/19 19:08:00 by amantara         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:19:52 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+#include <stdbool.h>
+
+bool	ft_is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (true);
+	return (false);
+}
 
 void	validate_rectangle_walls(t_global *global)
 {
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	if (global->height == global->width)
 		show_error_msg(1, "Error\n El mapa tiene que ser rectangular.");
-	while (i < global->height)
+	while (++i < global->height)
 	{
 		j = 0;
 		while (global->map[i][j])
 		{
-			if (i == 0 || i == global->height - 1)
+			if ((i == 0 || ft_is_player(global->map[i][j]))
+				|| i == global->height - 1)
 			{
 				if (global->map[i][j] != '1' && global->map[i][j] != '\n')
 					show_error_msg(1, "Error\n paredes ultima primera linea");
@@ -37,7 +46,6 @@ void	validate_rectangle_walls(t_global *global)
 			}
 			j++;
 		}
-		i++;
 	}
 }
 

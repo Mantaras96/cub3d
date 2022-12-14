@@ -3,7 +3,6 @@ SRCS =	src/main.c \
 		src/get_next_line.c \
 		src/validate_and_read_map.c \
 		src/validate_letters_map.c \
-		src/show_map.c \
 		src/error.c \
 		src/mover.c \
 		src/split_map.c \
@@ -19,7 +18,6 @@ SRCS =	src/main.c \
 		src/utils2.c \
 		src/key_move_vision.c\
 		src/ft_directions.c\
-		src/split_space.c \
 		src/ft_memset.c \
 		src/ft_bzero.c \
 		src/ft_memcpy.c \
@@ -80,7 +78,7 @@ COMFILE_FLAGS = -I${HOME}/.brew/opt/readline/include
 	${CC} ${CFLAGS} $(COMFILE_FLAGS) -I ${HEADER} -c $< -o ${<:.c=.o}
 	
 ${NAME}:	${OBJS} ${HEADER}
-			$make -C mlx
+			make -C mlx
 			${CC} ${CFLAGS} $(COMFILE_FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit ${OBJS} -o ${NAME}
 all:		${NAME}
 

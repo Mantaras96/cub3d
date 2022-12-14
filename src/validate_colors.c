@@ -6,7 +6,7 @@
 /*   By: amantara <amantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:24:41 by amantara          #+#    #+#             */
-/*   Updated: 2022/11/18 17:48:52 by amantara         ###   ########.fr       */
+/*   Updated: 2022/11/25 12:11:26 by tmerida-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,55 @@ int	rgb(int r, int g, int b)
 	return (rgb);
 }
 
-int	save_num(t_global *global, char *nums, int i)
+int	save_num(t_global *global, char *nums)
 {
 	char	**arr;
+	char	**arr2;
+	char	**arr3;
 
-	arr = NULL;
-	if (i == 0)
+	(void)global;
+	arr3 = ft_split(nums, '\n');
+	arr = ft_split(arr3[0], ' ');
+	if (!ft_strcmp(arr[0], "F"))
 	{
-		arr = ft_split(nums, ',');
-		global->rgb_f = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
-		free_matrix(&arr);
-	}	
-	if (i == 1)
+		arr2 = ft_split(arr[1], ',');
+		global->rgb_f = rgb(ft_atoi(arr2[0]),
+				ft_atoi(arr2[1]), ft_atoi(arr2[2]));
+		free_matrix(&arr2);
+	}
+	if (!ft_strcmp(arr[0], "C"))
 	{
-		arr = ft_split(nums, ',');
-		global->rgb_c = rgb(ft_atoi(arr[0]), ft_atoi(arr[1]), ft_atoi(arr[2]));
-		free_matrix(&arr);
+		arr2 = ft_split(arr[1], ',');
+		global->rgb_c = rgb(ft_atoi(arr2[0]),
+				ft_atoi(arr2[1]), ft_atoi(arr2[2]));
+		free_matrix(&arr2);
 	}
 	free_matrix(&arr);
+	free_matrix(&arr2);
+	free_matrix(&arr3);
 	return (0);
 }
 
 int	save_color(t_global *global)
 {
 	int		i;
-	char	**arr;
-	char	**arr2;
 
 	i = 0;
 	while (global->colors[i])
 	{
-		arr = ft_split(global->colors[i], ' ');
-		arr2 = ft_split(arr[1], '\n');
-		save_num(global, arr2[0], i);
-		free_matrix(&arr);
-		free_matrix(&arr2);
+		save_num(global, global->colors[i]);
 		i++;
 	}
-	free_matrix(&arr);
-	free_matrix(&arr2);
 	return (0);
 }
 
-int	check_nums(char *line_nums)
+int	check_nums(char *line_nums, char **arr, int i)
 {
-	int		i;
-	char	**arr;
-
-	i = 0;
+	if (check_commas(line_nums))
+		return (1);
 	arr = ft_split(line_nums, ',');
+	if (arr[3])
+		return (1);
 	while (arr[i])
 	{
 		if (ft_isdigit(arr[i][0]))
@@ -93,14 +93,14 @@ int	check_nums(char *line_nums)
 }
 
 int	validate_colors(t_global *global, int i, char **arr)
-{	
+{
 	check_color(i, global);
 	while (global->colors[i])
 	{
 		arr = ft_split(global->colors[i], ' ');
 		if (!ft_strcmp(arr[0], "F") || !ft_strcmp(arr[0], "C"))
 		{
-			if (check_nums(arr[1]))
+			if (check_nums(arr[1], arr, 0))
 			{
 				free_matrix(&arr);
 				show_error_msg(2, "Error colores");
